@@ -2,172 +2,91 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Bonpland Corrientes - Página Oficial</title>
-  <meta name="description" content="Información, novedades y servicios de la localidad de Bonpland, Corrientes.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonpland Corrientes</title>
+  <meta name="description" content="Sitio web oficial del proyecto Bonpland Corrientes de Juan Ferreyra.">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  
+  <!-- Imagen para buscadores -->
+  <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen-bonpland.jpg" />
+  <meta property="og:title" content="Bonpland Corrientes" />
+  <meta property="og:description" content="Conocé nuestro proyecto educativo y comunitario." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://juancitofer25.github.io/bonplandcorrientes/" />
+
   <style>
     body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #121212 url('fondo.jpg') no-repeat center center fixed;
+      background-image: url('fondo.jpg');
       background-size: cover;
       color: white;
-    }
-
-    header {
-      text-align: center;
-      background-color: rgba(0,0,0,0.6);
-      padding: 20px;
-      margin-bottom: 40px;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .seccion {
-      display: none;
-      padding: 20px;
-    }
-
-    .activa {
-      display: block;
-    }
-
-    #contacto form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-    }
-
-    #contacto input, #contacto textarea {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-    }
-
-    #contacto button {
-      background-color: #00adb5;
-      color: white;
-      border: none;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #contacto button:hover {
-      background-color: #007f87;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: rgba(0,0,0,0.6);
-      color: white;
-      margin-top: 40px;
-    }
-
-    #efecto-musica p {
-      animation: parpadeo 1s infinite;
-      color: #00ffcc;
-      font-weight: bold;
-    }
-
-    @keyframes parpadeo {
-      0% { opacity: 1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 1; }
-    }
-
-    .musica-btn {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #222;
-    }
-
-    #navidad {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    #cuenta {
-      font-size: 24px;
-      margin: 10px 0;
-      color: #00ffcc;
-      font-weight: bold;
-    }
-
-    .papa-noel {
-      width: 100px;
-      margin-top: 15px;
-    }
-
-    #clima {
-      text-align: center;
-      margin-top: 30px;
-      background-color: rgba(0,0,0,0.5);
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    #redes ul {
-      list-style: none;
+      font-family: Arial, sans-serif;
+      margin: 0;
       padding: 0;
+      text-align: center;
     }
-
-    #redes li {
-      margin: 15px 0;
-    }
-
-    #redes a {
-      color: white;
-      font-size: 18px;
-      text-decoration: none;
-    }
-
-    #redes i {
-      margin-right: 10px;
-      font-size: 24px;
-      vertical-align: middle;
-    }
-
-    #redes {
-      background: transparent;
+    .contenedor {
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 20px;
-    }
-
-    .sobremi-contenido {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 25px;
-      border-radius: 10px;
+      margin: 20px auto;
       max-width: 800px;
-      margin: 0 auto;
+      border-radius: 10px;
     }
-
-    .sobremi-contenido h2 {
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 28px;
+      color: #ffd700;
+      margin-top: 30px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .qr {
+      margin: 20px 0;
+    }
+    .santa {
+      width: 150px;
+      margin-top: 20px;
+    }
+    iframe {
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
-<!-- CONTINÚA EL MISMO CÓDIGO DESDE AQUÍ... -->
+  <div class="contenedor">
+    <h1>Bonpland Corrientes</h1>
+    
+    <!-- 🎵 Música -->
+    <audio autoplay loop>
+      <source src="musica.mp3" type="audio/mpeg" />
+      Tu navegador no soporta audio.
+    </audio>
+
+    <!-- 📸 QR -->
+    <div class="qr">
+      <h2>Escaneá el código QR</h2>
+      <img src="qr.png" alt="Código QR del sitio" width="200" />
+    </div>
+
+    <!-- 🎅 Papá Noel -->
+    <img class="santa" src="papa-noel.png" alt="Papá Noel" />
+
+    <!-- ☁ Clima -->
+    <h2>Clima en Bonpland</h2>
+    <iframe src="https://www.meteored.com.ar/getwid/corrientes_bonpland/weather-widget/?mode=horizontal" frameborder="0" scrolling="no" width="100%" height="60"></iframe>
+
+    <!-- 📝 SOBRE MÍ -->
+    <h2>¿Quién soy?</h2>
+    <p>Soy Juan Ferreyra, estudiante de 4to año de secundaria. Me gusta la tecnología, el diseño web y aprender cosas nuevas todos los días.</p>
+
+    <h2>¿Qué me gusta?</h2>
+    <p>Me gusta el deporte, el vóley, el fútbol, Dragon Ball, programar y escuchar música mientras trabajo en mis proyectos.</p>
+
+    <h2>Mis metas</h2>
+    <p>Mi objetivo es seguir aprendiendo sobre programación y diseño web para poder crear sitios útiles, atractivos y bien organizados.</p>
+  </div>
+</body>
+</html>
