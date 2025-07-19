@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mi Página Personal</title>
+  <title>Bonpland Corrientes - Página Oficial</title>
+  <meta name="description" content="Información, novedades y servicios de la localidad de Bonpland, Corrientes.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
@@ -167,143 +170,4 @@
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Bienvenido a mi página:)</h1>
-    <nav>
-      <a onclick="mostrarSeccion('inicio')">Inicio</a>
-      <a onclick="mostrarSeccion('sobremi')">Sobre mí</a>
-      <a onclick="mostrarSeccion('redes')">Redes</a>
-      <a onclick="mostrarSeccion('contacto')">Contacto</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- INICIO -->
-    <section id="inicio" class="seccion activa">
-      <section id="navidad">
-        <h2>Faltan para Navidad:</h2>
-        <div id="cuenta"></div>
-        <img src="papa-noel.png" alt="Papá Noel" class="papa-noel">
-      </section>
-
-      <section id="clima">
-        <h2>Clima actual en Bonpland, Corrientes</h2>
-        <p id="infoClima">Cargando clima...</p>
-      </section>
-
-      <section id="musica">
-        <audio id="musicaFondo" src="musica.mp3" loop></audio>
-        <div id="efecto-musica" style="display:none; text-align:center; margin-top:20px;">
-          <p>♪ Música en reproducción ♪</p>
-        </div>
-        <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
-      </section>
-    </section>
-
-    <!-- SOBRE MÍ -->
-    <section id="sobremi" class="seccion">
-      <div class="sobremi-contenido">
-        <h2>¿Quién soy?</h2>
-        <p>Hola, soy Juan Ferreyra. Estudiante de secundaria, apasionado por el deporte, la tecnología y el diseño web. Me gusta crear cosas desde cero, aprender por mi cuenta y superarme día a día. Estoy trabajando en mi propia página web, y esta es una muestra de mi progreso.</p>
-
-        <h2>¿Qué me gusta?</h2>
-        <p>Me encanta el vóley, el fútbol, y todo lo relacionado con el desarrollo digital. También me interesa mejorar mi estado físico, aprender nuevas habilidades y crear ideas que inspiren a otros jóvenes como yo.</p>
-
-        <h2>Mis metas</h2>
-        <p>Mi objetivo es crecer personal y profesionalmente, seguir aprendiendo sobre programación, diseño y negocios, y algún día crear proyectos que tengan impacto real.</p>
-      </div>
-    </section>
-
-    <!-- REDES -->
-    <section id="redes" class="seccion">
-      <h2>Mis Redes Sociales</h2>
-      <ul>
-        <li>
-          <a href="https://www.instagram.com/ferreyrajuan.15" target="_blank">
-            <i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/tuusuario" target="_blank">
-            <i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube
-          </a>
-        </li>
-        <li>
-          <a href="https://wa.me/543772612954" target="_blank">
-            <i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="seccion">
-      <h2>Contacto</h2>
-      <form action="procesar.php" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-
-        <label for="email">Correo:</label>
-        <input type="email" id="email" name="email" placeholder="Tu correo" required />
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" rows="3" required></textarea>
-
-        <button type="submit">Enviar mensaje</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Juan Ferreyra. Todos los derechos reservados.<br>
-    Esta página fue creada por un chico del pueblo :)
-  </footer>
-
-  <script>
-    function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-      document.getElementById(id).classList.add('activa');
-    }
-
-    const musica = document.getElementById('musicaFondo');
-    const efecto = document.getElementById('efecto-musica');
-
-    function toggleMusica() {
-      if (musica.paused) {
-        musica.play();
-        efecto.style.display = 'block';
-      } else {
-        musica.pause();
-        efecto.style.display = 'none';
-      }
-    }
-
-    function actualizarCuenta() {
-      const cuenta = document.getElementById("cuenta");
-      const ahora = new Date();
-      let navidad = new Date(ahora.getFullYear(), 11, 25);
-      if (ahora > navidad) navidad.setFullYear(navidad.getFullYear() + 1);
-      const diff = navidad - ahora;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      cuenta.textContent = `${dias} días, ${horas}h ${minutos}m ${segundos}s`;
-    }
-    setInterval(actualizarCuenta, 1000);
-    actualizarCuenta();
-
-    async function obtenerClima() {
-      const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
-      const data = await res.json();
-      const clima = data.current_weather;
-      const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
-      document.getElementById("infoClima").textContent = info;
-    }
-    obtenerClima();
-    setInterval(obtenerClima, 1800000);
-  </script>
-
-</body>
-</html>
+<!-- CONTINÚA EL MISMO CÓDIGO DESDE AQUÍ... -->
