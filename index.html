@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <title>Mi Página Personal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Agregado para SEO y Google -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Página web oficial de Bonpland Corrientes. Información, clima, contacto y más sobre nuestra localidad." />
+  <meta name="keywords" content="Bonpland, Corrientes, clima, contacto, información, pueblo" />
+  <meta name="author" content="Juan Ferreyra" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph para imagen destacada y redes sociales -->
+  <meta property="og:title" content="Mi Página Personal - Bonpland Corrientes" />
+  <meta property="og:description" content="Conocé todo sobre Bonpland Corrientes. El clima, contacto, ubicación y más." />
+  <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen.jpg" />
+  <meta property="og:url" content="https://juancitofer25.github.io/bonplandcorrientes/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
   <style>
     body {
       margin: 0;
@@ -289,7 +307,7 @@
       const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutos = Math.floor((diff / (1000 * 60)) % 60);
       const segundos = Math.floor((diff / 1000) % 60);
-      cuenta.textContent = ${dias} días, ${horas}h ${minutos}m ${segundos}s;
+      cuenta.textContent = `${dias} días, ${horas}h ${minutos}m ${segundos}s`;
     }
     setInterval(actualizarCuenta, 1000);
     actualizarCuenta();
@@ -297,15 +315,6 @@
     async function obtenerClima() {
       const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
       const data = await res.json();
-      const clima = data.current_weather;
-      const info = Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h;
-      document.getElementById("infoClima").textContent = info;
-    }
-    obtenerClima();
-    setInterval(obtenerClima, 1800000);
-  </script>
+      const clima = data.current_weather
 
-</body>
-</html>
-
-
+  
