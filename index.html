@@ -2,29 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi Página Personal - Bonpland Corrientes</title>
+  <title>Mi Página Personal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- SEO para Google -->
+  <!-- Agregado para SEO y Google -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Página web oficial de Bonpland Corrientes. Información, clima, contacto y más sobre nuestra localidad." />
   <meta name="keywords" content="Bonpland, Corrientes, clima, contacto, información, pueblo" />
   <meta name="author" content="Juan Ferreyra" />
+  <meta name="robots" content="index, follow" />
 
-  <!-- Imagen destacada para Google y redes sociales -->
+  <!-- Open Graph para imagen destacada y redes sociales -->
   <meta property="og:title" content="Mi Página Personal - Bonpland Corrientes" />
   <meta property="og:description" content="Conocé todo sobre Bonpland Corrientes. El clima, contacto, ubicación y más." />
   <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen.jpg" />
   <meta property="og:url" content="https://juancitofer25.github.io/bonplandcorrientes/" />
   <meta property="og:type" content="website" />
 
-  <!-- Indexar la página -->
-  <meta name="robots" content="index, follow" />
-
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     body {
@@ -278,13 +274,13 @@
   </main>
 
   <footer>
-    © 2025 Juan Ferreyra. Todos los derechos reservados.<br />
+    © 2025 Juan Ferreyra. Todos los derechos reservados.<br>
     Esta página fue creada por un chico del pueblo :)
   </footer>
 
   <script>
     function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach((s) => s.classList.remove('activa'));
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
       document.getElementById(id).classList.add('activa');
     }
 
@@ -302,7 +298,7 @@
     }
 
     function actualizarCuenta() {
-      const cuenta = document.getElementById('cuenta');
+      const cuenta = document.getElementById("cuenta");
       const ahora = new Date();
       let navidad = new Date(ahora.getFullYear(), 11, 25);
       if (ahora > navidad) navidad.setFullYear(navidad.getFullYear() + 1);
@@ -317,16 +313,6 @@
     actualizarCuenta();
 
     async function obtenerClima() {
-      const res = await fetch(
-        'https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true'
-      );
+      const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
       const data = await res.json();
-      const clima = data.current_weather;
-      const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
-      document.getElementById('infoClima').textContent = info;
-    }
-    obtenerClima();
-    setInterval(obtenerClima, 1800000);
-  </script>
-</body>
-</html>
+      const clima = data.current_weather
