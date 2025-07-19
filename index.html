@@ -2,91 +2,331 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bonpland Corrientes</title>
-  <meta name="description" content="Sitio web oficial del proyecto Bonpland Corrientes de Juan Ferreyra.">
-  <link rel="icon" href="favicon.png" type="image/png" />
-  
-  <!-- Imagen para buscadores -->
-  <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen-bonpland.jpg" />
-  <meta property="og:title" content="Bonpland Corrientes" />
-  <meta property="og:description" content="Conocé nuestro proyecto educativo y comunitario." />
-  <meta property="og:type" content="website" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Página Personal - Bonpland Corrientes</title>
+
+  <!-- SEO para Google -->
+  <meta name="description" content="Página web oficial de Bonpland Corrientes. Información, clima, contacto y más sobre nuestra localidad." />
+  <meta name="keywords" content="Bonpland, Corrientes, clima, contacto, información, pueblo" />
+  <meta name="author" content="Juan Ferreyra" />
+
+  <!-- Imagen destacada para Google y redes sociales -->
+  <meta property="og:title" content="Mi Página Personal - Bonpland Corrientes" />
+  <meta property="og:description" content="Conocé todo sobre Bonpland Corrientes. El clima, contacto, ubicación y más." />
+  <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen.jpg" />
   <meta property="og:url" content="https://juancitofer25.github.io/bonplandcorrientes/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Indexar la página -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     body {
-      background-image: url('fondo.jpg');
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #121212 url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+    }
+
+    header {
       text-align: center;
-    }
-    .contenedor {
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0,0,0,0.6);
       padding: 20px;
-      margin: 20px auto;
-      max-width: 800px;
+      margin-bottom: 40px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .seccion {
+      display: none;
+      padding: 20px;
+    }
+
+    .activa {
+      display: block;
+    }
+
+    #contacto form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
       border-radius: 10px;
+      max-width: 500px;
     }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+
+    #contacto input, #contacto textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
     }
-    h2 {
-      font-size: 28px;
-      color: #ffd700;
+
+    #contacto button {
+      background-color: #00adb5;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #contacto button:hover {
+      background-color: #007f87;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      color: white;
+      margin-top: 40px;
+    }
+
+    #efecto-musica p {
+      animation: parpadeo 1s infinite;
+      color: #00ffcc;
+      font-weight: bold;
+    }
+
+    @keyframes parpadeo {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    .musica-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #222;
+    }
+
+    #navidad {
+      text-align: center;
       margin-top: 30px;
     }
-    p {
+
+    #cuenta {
+      font-size: 24px;
+      margin: 10px 0;
+      color: #00ffcc;
+      font-weight: bold;
+    }
+
+    .papa-noel {
+      width: 100px;
+      margin-top: 15px;
+    }
+
+    #clima {
+      text-align: center;
+      margin-top: 30px;
+      background-color: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    #redes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #redes li {
+      margin: 15px 0;
+    }
+
+    #redes a {
+      color: white;
       font-size: 18px;
+      text-decoration: none;
     }
-    .qr {
-      margin: 20px 0;
+
+    #redes i {
+      margin-right: 10px;
+      font-size: 24px;
+      vertical-align: middle;
     }
-    .santa {
-      width: 150px;
-      margin-top: 20px;
+
+    #redes {
+      background: transparent;
+      padding: 20px;
     }
-    iframe {
+
+    .sobremi-contenido {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .sobremi-contenido h2 {
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="contenedor">
-    <h1>Bonpland Corrientes</h1>
-    
-    <!-- 🎵 Música -->
-    <audio autoplay loop>
-      <source src="musica.mp3" type="audio/mpeg" />
-      Tu navegador no soporta audio.
-    </audio>
 
-    <!-- 📸 QR -->
-    <div class="qr">
-      <h2>Escaneá el código QR</h2>
-      <img src="qr.png" alt="Código QR del sitio" width="200" />
-    </div>
+  <header>
+    <h1>Bienvenido a mi página:)</h1>
+    <nav>
+      <a onclick="mostrarSeccion('inicio')">Inicio</a>
+      <a onclick="mostrarSeccion('sobremi')">Sobre mí</a>
+      <a onclick="mostrarSeccion('redes')">Redes</a>
+      <a onclick="mostrarSeccion('contacto')">Contacto</a>
+    </nav>
+  </header>
 
-    <!-- 🎅 Papá Noel -->
-    <img class="santa" src="papa-noel.png" alt="Papá Noel" />
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="seccion activa">
+      <section id="navidad">
+        <h2>Faltan para Navidad:</h2>
+        <div id="cuenta"></div>
+        <img src="papa-noel.png" alt="Papá Noel" class="papa-noel">
+      </section>
 
-    <!-- ☁ Clima -->
-    <h2>Clima en Bonpland</h2>
-    <iframe src="https://www.meteored.com.ar/getwid/corrientes_bonpland/weather-widget/?mode=horizontal" frameborder="0" scrolling="no" width="100%" height="60"></iframe>
+      <section id="clima">
+        <h2>Clima actual en Bonpland, Corrientes</h2>
+        <p id="infoClima">Cargando clima...</p>
+      </section>
 
-    <!-- 📝 SOBRE MÍ -->
-    <h2>¿Quién soy?</h2>
-    <p>Soy Juan Ferreyra, estudiante de 4to año de secundaria. Me gusta la tecnología, el diseño web y aprender cosas nuevas todos los días.</p>
+      <section id="musica">
+        <audio id="musicaFondo" src="musica.mp3" loop></audio>
+        <div id="efecto-musica" style="display:none; text-align:center; margin-top:20px;">
+          <p>♪ Música en reproducción ♪</p>
+        </div>
+        <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
+      </section>
+    </section>
 
-    <h2>¿Qué me gusta?</h2>
-    <p>Me gusta el deporte, el vóley, el fútbol, Dragon Ball, programar y escuchar música mientras trabajo en mis proyectos.</p>
+    <!-- SOBRE MÍ -->
+    <section id="sobremi" class="seccion">
+      <div class="sobremi-contenido">
+        <h2>¿Quién soy?</h2>
+        <p>Hola, soy Juan Ferreyra. Estudiante de secundaria, apasionado por el deporte, la tecnología y el diseño web. Me gusta crear cosas desde cero, aprender por mi cuenta y superarme día a día. Estoy trabajando en mi propia página web, y esta es una muestra de mi progreso.</p>
 
-    <h2>Mis metas</h2>
-    <p>Mi objetivo es seguir aprendiendo sobre programación y diseño web para poder crear sitios útiles, atractivos y bien organizados.</p>
-  </div>
+        <h2>¿Qué me gusta?</h2>
+        <p>Me encanta el vóley, el fútbol, y todo lo relacionado con el desarrollo digital. También me interesa mejorar mi estado físico, aprender nuevas habilidades y crear ideas que inspiren a otros jóvenes como yo.</p>
+
+        <h2>Mis metas</h2>
+        <p>Mi objetivo es crecer personal y profesionalmente, seguir aprendiendo sobre programación, diseño y negocios, y algún día crear proyectos que tengan impacto real.</p>
+      </div>
+    </section>
+
+    <!-- REDES -->
+    <section id="redes" class="seccion">
+      <h2>Mis Redes Sociales</h2>
+      <ul>
+        <li>
+          <a href="https://www.instagram.com/ferreyrajuan.15" target="_blank">
+            <i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/tuusuario" target="_blank">
+            <i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/543772612954" target="_blank">
+            <i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="seccion">
+      <h2>Contacto</h2>
+      <form action="procesar.php" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+
+        <label for="email">Correo:</label>
+        <input type="email" id="email" name="email" placeholder="Tu correo" required />
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" rows="3" required></textarea>
+
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Juan Ferreyra. Todos los derechos reservados.<br />
+    Esta página fue creada por un chico del pueblo :)
+  </footer>
+
+  <script>
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach((s) => s.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
+    }
+
+    const musica = document.getElementById('musicaFondo');
+    const efecto = document.getElementById('efecto-musica');
+
+    function toggleMusica() {
+      if (musica.paused) {
+        musica.play();
+        efecto.style.display = 'block';
+      } else {
+        musica.pause();
+        efecto.style.display = 'none';
+      }
+    }
+
+    function actualizarCuenta() {
+      const cuenta = document.getElementById('cuenta');
+      const ahora = new Date();
+      let navidad = new Date(ahora.getFullYear(), 11, 25);
+      if (ahora > navidad) navidad.setFullYear(navidad.getFullYear() + 1);
+      const diff = navidad - ahora;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      cuenta.textContent = `${dias} días, ${horas}h ${minutos}m ${segundos}s`;
+    }
+    setInterval(actualizarCuenta, 1000);
+    actualizarCuenta();
+
+    async function obtenerClima() {
+      const res = await fetch(
+        'https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true'
+      );
+      const data = await res.json();
+      const clima = data.current_weather;
+      const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
+      document.getElementById('infoClima').textContent = info;
+    }
+    obtenerClima();
+    setInterval(obtenerClima, 1800000);
+  </script>
 </body>
 </html>
