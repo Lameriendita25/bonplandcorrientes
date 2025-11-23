@@ -95,15 +95,15 @@
         cursor: pointer;
         color: #00ffcc;
         margin-bottom: 5px;
-        display: flex; /* Añadido para mejor alineación del icono */
-        justify-content: space-between; /* Añadido para mejor alineación del icono */
+        display: flex; /* Mantenido para el diseño del acordeón */
+        justify-content: space-between; /* Mantenido para el diseño del acordeón */
     }
     .contenido-proyecto {
         display: none;
         padding: 10px 0;
         color: #ddd;
     }
-    /* Estilos adicionales para la lista del proyecto */
+    /* Estilos para la lista del proyecto (mejor visualización del informe) */
     .contenido-proyecto ul {
         list-style-type: none;
         padding-left: 0;
@@ -115,6 +115,12 @@
     }
     .contenido-proyecto strong {
         color: #00ffcc;
+    }
+    .contenido-proyecto h4 {
+        color: #00adb5;
+        margin-top: 15px;
+        border-bottom: 1px solid rgba(0, 173, 181, 0.3);
+        padding-bottom: 5px;
     }
   </style>
 </head>
@@ -153,33 +159,32 @@
             <p>Aquí puedes explorar los trabajos en los que hemos estado enfocados como equipo.</p>
             
             <div class="seccion-proyecto">
-                <h3 onclick="toggleContenido('proyectoMeriendita')">🥟 Proyecto La Meriendita: Informe Completo <i class="fas fa-caret-down"></i></h3>
+                <h3 onclick="toggleContenido('proyectoMeriendita')">🥟 Proyecto La Meriendita: Informe Completo T.I.I.C. <i class="fas fa-caret-down"></i></h3>
                 <div id="proyectoMeriendita" class="contenido-proyecto">
-                    <h4>Datos Generales y Fundamentación</h4>
+                    <h4>1. Datos Generales y Fundamentación</h4>
                     <ul>
-                        <li>**Emprendimiento:** La Meriendita.</li>
+                        <li>**Nombre del Proyecto:** La Meriendita.</li>
                         <li>**Slogan:** "UN CLÁSICO QUE NUNCA FALLA."</li>
-                        <li>**Producto Principal:** Empanadas de pollo.</li>
-                        <li>**Colegio y Materia:** Secundario "Amado Bonpland" / T.I.I.C.</li>
-                        <li>**Integrantes:** Ferreyra Juan, Canteros Joaquín y Olivera Eduardo.</li>
-                        <li>**Objetivo Principal:** Desarrollar habilidades emprendedoras, planificación y organización del trabajo en equipo.</li>
-                        <li>**Fundamentación:** Producto elegido por ser tradicional argentino, sabroso, de fácil preparación y gran aceptación popular.</li>
+                        <li>**Producto Principal:** Empanadas de pollo (elegido por ser tradicional, sabroso y de gran aceptación).</li>
+                        <li>**Contexto Escolar:** Materia **T.I.I.C.** / Colegio Secundario "**Amado Bonpland**".</li>
+                        <li>**Integrantes:** Ferreyra Juan, Canteros Joaquín, y Olivera Eduardo (4to Año).</li>
+                        <li>**Objetivo:** Desarrollar habilidades emprendedoras, trabajar en equipo y organizar la producción de un producto alimenticio.</li>
                     </ul>
 
-                    <h4>Análisis FODA (Resumen)</h4>
+                    <h4>2. Análisis FODA</h4>
                     <ul>
                         <li>**✅ Fortalezas:** Recetas caseras y sabrosas, buena organización del grupo.</li>
-                        <li>**⚠️ Debilidades:** Dificultad para coordinar tiempos entre estudio y producción, falta de recursos.</li>
-                        <li>**📈 Oportunidades:** Promoción vía redes sociales, ventas durante la hora del Recreo.</li>
-                        <li>**🛑 Amenazas:** Aumento en el precio de insumos (ej. la carne).</li>
+                        <li>**⚠️ Debilidades:** Dificultad para coordinar tiempos entre estudio y producción, y falta de recursos.</li>
+                        <li>**📈 Oportunidades:** Promoción a través de redes sociales, ventas durante los recreos.</li>
+                        <li>**🛑 Amenazas:** Aumento en el precio de los insumos (ej. la carne).</li>
                     </ul>
                     
-                    <h4>Investigación de Mercado</h4>
-                    <p>La investigación incluyó encuestas a compañeros y docentes, con los siguientes resultados:</p>
+                    <h4>3. Investigación de Mercado y Precios</h4>
+                    <p>Se realizó una encuesta a compañeros y docentes, con los siguientes resultados:</p>
                     <ul>
-                        <li>**Preferencias:** Las empanadas con paleta y queso fueron las más populares (90%).</li>
-                        <li>**Cocción:** Se prefiere Frita (63.6%) y Caliente (72.7%).</li>
-                        <li>**Condimentos:** El 80% de los encuestados prefiere la empanada **sin aceituna**.</li>
+                        <li>**Preferencia Principal:** Empanadas con Paleta y Queso (90% de aprobación).</li>
+                        <li>**Cocción Preferida:** Frita (63.6%) y Caliente (72.7%).</li>
+                        <li>**Sazón:** La gran mayoría prefiere la empanada **sin aceituna** (80%).</li>
                         <li>**Precios de Venta:** Docena: **$7.500** / Media Docena: **$3.750** / Unidad: **$625**.</li>
                     </ul>
                 </div>
