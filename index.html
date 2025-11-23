@@ -18,6 +18,13 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    :root{
+      --accent:#00adb5;
+      --accent-2:#00ffcc;
+      --card-bg: rgba(0,0,0,0.5);
+      --page-bg: #ffffff;
+      --page-text:#222;
+    }
     body { margin: 0; padding: 20px; font-family: Arial, sans-serif;
       background: #121212 url('fondo.jpg') no-repeat center center fixed;
       background-size: cover; color: white;
@@ -28,7 +35,7 @@
     header h1 {
       font-family: 'Pacifico', cursive;
       font-size: 3.5em;
-      color: #00adb5;
+      color: var(--accent);
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       margin: 0;
     }
@@ -45,7 +52,7 @@
       padding: 10px; border-radius: 5px; border: none; font-size: 16px;
     }
     #contacto button {
-      background-color: #00adb5; color: white; border: none;
+      background-color: var(--accent); color: white; border: none;
       padding: 10px; font-size: 16px; border-radius: 5px; cursor: pointer;
       transition: 0.3s;
     }
@@ -54,7 +61,7 @@
       background-color: rgba(0,0,0,0.6); color: white; margin-top: 40px;
     }
     #efecto-musica p {
-      animation: parpadeo 1s infinite; color: #00ffcc; font-weight: bold;
+      animation: parpadeo 1s infinite; color: var(--accent-2); font-weight: bold;
     }
     @keyframes parpadeo {
       0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; }
@@ -80,26 +87,57 @@
     }
     #redes { background: transparent; padding: 20px; }
     .contenido-caja {
-      background: rgba(0, 0, 0, 0.5); padding: 25px;
-      border-radius: 10px; max-width: 800px; margin: 0 auto;
+      background: var(--card-bg); padding: 25px;
+      border-radius: 10px; max-width: 900px; margin: 0 auto;
     }
-    .contenido-caja h2, .contenido-caja h3 { margin-top: 20px; color: #00adb5; }
+    .contenido-caja h2, .contenido-caja h3 { margin-top: 20px; color: var(--accent); }
 
     /* Acordeón */
     .seccion-proyecto {
-      border-left: 3px solid #00adb5;
+      border-left: 3px solid var(--accent);
       padding-left: 15px;
       margin-top: 20px;
     }
     .seccion-proyecto h3 {
       cursor: pointer;
-      color: #00ffcc;
+      color: var(--accent-2);
       margin-bottom: 5px;
     }
     .contenido-proyecto {
       display: none;
       padding: 10px 0;
       color: #ddd;
+    }
+
+    /* VISOR DE PAGINAS - DISEÑO TIPO HOJA (Word/Informe) */
+    .visor {
+      display:flex; flex-direction:column; align-items:center; gap:12px;
+      margin-top:20px;
+    }
+    .pagina {
+      width: 100%; max-width:780px; min-height:500px;
+      background: var(--page-bg); color:var(--page-text);
+      border-radius:6px; padding:28px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border: 1px solid rgba(0,0,0,0.12);
+      box-sizing:border-box;
+    }
+    .pagina h3 { color: var(--accent); margin-top:0; }
+    .pagina .meta { font-size:14px; color:#666; margin-bottom:14px; }
+    .visor-controls { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:780px; gap:10px; }
+    .btn {
+      background: var(--accent); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .btn:disabled { opacity:0.5; cursor:default; }
+    .page-indicator { color:#ddd; }
+    .page-dots { display:flex; gap:6px; align-items:center; }
+    .dot { width:10px; height:10px; border-radius:50%; background:#444; }
+    .dot.active { background: var(--accent-2); box-shadow:0 0 6px rgba(0,255,204,0.2); }
+
+    /* Responsivo */
+    @media (max-width:820px){
+      .pagina { padding:18px; min-height:420px; }
+      header h1 { font-size:2.4em; }
     }
   </style>
 </head>
@@ -134,7 +172,7 @@
   </section>
 </section>
 
-<!-- NOSOTROS -->
+<!-- NOSOTROS (NO TOCAR) -->
 <section id="nosotros" class="seccion">
   <div class="contenido-caja">
     <h2>¿Quiénes somos?</h2>
@@ -155,40 +193,40 @@
     <h2>Nuestros Proyectos Destacados</h2>
     <p>Aquí puedes explorar los trabajos en los que hemos estado enfocados como equipo.</p>
 
-    <!-- 🔥 NUEVO PROYECTO AGREGADO AQUÍ -->
+    <!-- Proyecto: Visor por Páginas (Informe) -->
     <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('proyectoMicro')">🥟 Microemprendimiento Escolar: La Meriendita 25 <i class="fas fa-caret-down"></i></h3>
-      <div id="proyectoMicro" class="contenido-proyecto">
-        <p><strong>Materia:</strong> Tecnología de la Información y la Comunicación (T.I.I.C.)</p>
-        <p><strong>Profesora a cargo:</strong> Natalia Romero</p>
+      <h3 onclick="toggleContenido('visorProyecto')">📄 Proyecto: La Meriendita 25 (Informe por Páginas) <i class="fas fa-caret-down"></i></h3>
+      <div id="visorProyecto" class="contenido-proyecto">
+        <p>Visualizador tipo informe — podés navegar página por página como si fuera un documento Word. El diseño es claro y listo para presentar.</p>
 
-        <h4>📌 Descripción</h4>
-        <p>La Meriendita 25 es un emprendimiento escolar que tiene como objetivo aprender sobre organización, producción y ventas mediante la elaboración de empanadas de pollo.</p>
+        <div class="visor" aria-live="polite">
+          <div id="contenedorPagina" class="pagina" role="document" aria-label="Página del informe">
+            <!-- contenido generado por JS -->
+          </div>
 
-        <h4>🎯 Objetivos</h4>
-        <ul>
-          <li>Desarrollar habilidades emprendedoras.</li>
-          <li>Trabajar en equipo.</li>
-          <li>Gestionar costos y precios.</li>
-          <li>Producir y vender dentro del colegio.</li>
-        </ul>
+          <div class="visor-controls">
+            <div>
+              <button id="prevBtn" class="btn" onclick="prevPage()"><i class="fas fa-arrow-left"></i> Anterior</button>
+              <button id="nextBtn" class="btn" onclick="nextPage()">Siguiente <i class="fas fa-arrow-right"></i></button>
+            </div>
 
-        <h4>🥟 Producto</h4>
-        <p>Empanadas de pollo, elegidas por su popularidad y aceptación escolar.</p>
+            <div class="page-indicator">
+              <span id="indicador">Página <span id="numPagina">1</span> / <span id="totalPaginas">1</span></span>
+            </div>
 
-        <h4>💲 Precios</h4>
-        <ul>
-          <li>Docena: $7.500</li>
-          <li>Media docena: $3.750</li>
-          <li>Unidad: $625</li>
-        </ul>
+            <div class="page-dots" id="dots"></div>
+          </div>
 
-        <h4>📁 Descargar Proyecto Completo</h4>
-        <a href="/mnt/data/T.I.I.C.Noviembre25.pdf" download style="color:#00ffcc; text-decoration:underline;">Descargar PDF</a>
+          <div style="margin-top:10px; width:100%; max-width:780px; display:flex; justify-content:space-between;">
+            <!-- descarga del pdf original -->
+            <a href="/mnt/data/T.I.I.C.Noviembre25.pdf" download class="btn" style="background:#007f87;"><i class="fas fa-file-download"></i> Descargar PDF</a>
+            <div style="color:#ccc; font-size:14px;">Formato: Informe web • Autor: Juan Ferreyra y equipo</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- PROYECTO WORD -->
+    <!-- PROYECTO WORD (mantengo el tuyo) -->
     <div class="seccion-proyecto">
       <h3 onclick="toggleContenido('proyecto1')">💻 Proyecto Word: Portada, Índice y Desarrollo <i class="fas fa-caret-down"></i></h3>
       <div id="proyecto1" class="contenido-proyecto">
@@ -200,7 +238,7 @@
     <div class="seccion-proyecto">
       <h3 onclick="toggleContenido('proyecto3')">🌐 Nuestra Página Web Personal (HTML/CSS) <i class="fas fa-caret-down"></i></h3>
       <div id="proyecto3" class="contenido-proyecto">
-        <p>El desarrollo de esta página web nos permitió aplicar conocimientos de HTML, CSS y JavaScript, incluyendo efectos visuales y APIs.</p>
+        <p>El desarrollo de esta página web nos permitió aplicar conocimientos de HTML, CSS y JavaScript, incluyendo efectos visuales y consumo de APIs.</p>
       </div>
     </div>
 
@@ -212,6 +250,7 @@
   <h2>Nuestras Redes Sociales:</h2>
   <ul>
     <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
+    <li><a href="https://www.youtube.com/tuusuario" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
     <li><a href="https://wa.me/543772612954" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a></li>
   </ul>
 </section>
@@ -237,36 +276,41 @@
 </footer>
 
 <script>
+/* ---------- Navegación secciones ---------- */
 function mostrarSeccion(id) {
   document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
   document.getElementById(id).classList.add('activa');
 }
 
+/* ---------- Música ---------- */
 const musica = document.getElementById('musicaFondo');
 const efecto = document.getElementById('efecto-musica');
 function toggleMusica() {
+  if (!musica) return;
   if (musica.paused) {
-    musica.play(); efecto.style.display = 'block';
+    musica.play(); if(efecto) efecto.style.display = 'block';
   } else {
-    musica.pause(); efecto.style.display = 'none';
+    musica.pause(); if(efecto) efecto.style.display = 'none';
   }
 }
 
+/* ---------- Acordeón (Proyectos) ---------- */
 function toggleContenido(id) {
   const contenido = document.getElementById(id);
+  if(!contenido) return;
   const icono = contenido.previousElementSibling.querySelector('i');
-
-  if (contenido.style.display === 'block') {
+  if (contenido.style.display === 'block' || contenido.classList.contains('open')) {
     contenido.style.display = 'none';
-    icono.classList.remove('fa-caret-up');
-    icono.classList.add('fa-caret-down');
+    contenido.classList.remove('open');
+    if(icono){ icono.classList.remove('fa-caret-up'); icono.classList.add('fa-caret-down'); }
   } else {
     contenido.style.display = 'block';
-    icono.classList.remove('fa-caret-down');
-    icono.classList.add('fa-caret-up');
+    contenido.classList.add('open');
+    if(icono){ icono.classList.remove('fa-caret-down'); icono.classList.add('fa-caret-up'); }
   }
 }
 
+/* ---------- Obtener clima (sigue igual) ---------- */
 async function obtenerClima() {
   try {
     const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
@@ -277,11 +321,92 @@ async function obtenerClima() {
     document.getElementById("infoClima").textContent = info;
   } catch (error) {
     document.getElementById("infoClima").textContent = `Error al cargar el clima.`;
+    console.error("Error fetching weather:", error);
   }
 }
 obtenerClima();
 setInterval(obtenerClima, 1800000);
-</script>
 
-</body>
-</html>
+/* ---------- VISOR DE PAGINAS (Informe) ---------- */
+/* Contenido de las páginas: lo armé con la info del PDF T.I.I.C.Noviembre25.pdf */
+const paginas = [
+  {
+    titulo: "La Meriendita - Proyecto Escolar",
+    meta: "Materia: Tecnología de la información y la comunicación (T.I.I.C.) • Colegio Secundario Amado Bonpland",
+    contenido: `
+      <h4>Proyecto Escolar</h4>
+      <p>La Meriendita es un emprendimiento escolar a cargo de la profesora Natalia Romero.</p>
+      <p><strong>Integrantes:</strong> Ferreyra Juan, Canteros Joaquín, Olivera Eduardo.</p>
+      <p><strong>Producto:</strong> Empanadas.</p>
+      <p><em>Slogan:</em> “UN CLÁSICO QUE NUNCA FALLA.”</p>
+    `
+  },
+  {
+    titulo: "Objetivos y Fundamentación",
+    meta: "Objetivos generales del proyecto",
+    contenido: `
+      <h4>Objetivos</h4>
+      <ul>
+        <li>Desarrollar habilidades emprendedoras.</li>
+        <li>Planificación y presentación de un producto alimenticio.</li>
+        <li>Aprender a organizar la producción y trabajar en equipo.</li>
+      </ul>
+      <h4>Fundamentación</h4>
+      <p>Elegimos empanadas de pollo por ser un producto tradicional argentino, de fácil preparación y con amplia aceptación en la comunidad escolar.</p>
+    `
+  },
+  {
+    titulo: "Descripción del Producto",
+    meta: "Detalles del producto elegido",
+    contenido: `
+      <h4>Descripción</h4>
+      <p>Empanadas de pollo caseras, elaboradas con recetas caseras que priorizan sabor y presentación. Buscamos un equilibrio entre calidad y coste para una venta accesible dentro del colegio.</p>
+    `
+  },
+  {
+    titulo: "Análisis FODA",
+    meta: "Fortalezas, Oportunidades, Debilidades y Amenazas",
+    contenido: `
+      <h4>Análisis FODA</h4>
+      <p><strong>Fortalezas:</strong> Recetas caseras y buena organización del grupo.</p>
+      <p><strong>Oportunidades:</strong> Promoción por redes sociales y ventas durante recreos.</p>
+      <p><strong>Debilidades:</strong> Coordinación de tiempos entre estudio y producción; recursos limitados.</p>
+      <p><strong>Amenazas:</strong> Aumento en el precio de insumos (por ejemplo, subida del precio de la carne).</p>
+    `
+  },
+  {
+    titulo: "Investigación y Encuestas",
+    meta: "Resultados de encuestas internas",
+    contenido: `
+      <h4>Investigación de Mercado</h4>
+      <p>Se realizaron encuestas entre compañeros y docentes. La mayoría mostró interés en comprar empanadas durante los recreos. También se analizó precios del mercado para fijar un precio competitivo.</p>
+      <p>Resultados breves: Preferencias por empanadas calientes y caseras; la mayoría sin aceituna; aceptación para venta en recreo.</p>
+    `
+  },
+  {
+    titulo: "Ingredientes y Costos",
+    meta: "Lista de insumos y algunos precios indicativos",
+    contenido: `
+      <h4>Ingredientes (ejemplo)</h4>
+      <ul>
+        <li>2 kg de carne de pollo</li>
+        <li>1 morrón verde</li>
+        <li>2 kg de harina</li>
+        <li>1 docena de huevos</li>
+        <li>Cebolla, condimentos, bolsas, pegatinas</li>
+      </ul>
+      <p>Precios aproximados (como en el informe): docena $7.500 • media docena $3.750 • unidad $625.</p>
+    `
+  },
+  {
+    titulo: "Costos Variables y Folleto",
+    meta: "Costos variables / Folleto / Catálogo",
+    contenido: `
+      <h4>Costo variable</h4>
+      <p>Se consideran insumos, envases, etiquetas y mano de obra. Es importante registrar compras y calcular precio por unidad para asegurar rentabilidad.</p>
+      <h4>Folleto / Catálogo</h4>
+      <p>Se puede preparar un folleto con fotos, precios y promociones para exhibir en la feria escolar o en redes.</p>
+    `
+  },
+  {
+    titulo: "Conclusión y Próximos Pasos",
