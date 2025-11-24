@@ -21,9 +21,11 @@
     :root{
       --accent:#00adb5;
       --accent-2:#00ffcc;
-      --card-bg: rgba(0,0,0,0.5);
-      --page-bg: #ffffff;
-      --page-text:#222;
+      --card-bg: rgba(0,0,0,0.45);
+      --viewer-bg: rgba(255,255,255,0.06);
+      --page-frame: rgba(255,255,255,0.06);
+      --text-light: #ddd;
+      --muted: #bfbfbf;
     }
     body { margin: 0; padding: 20px; font-family: Arial, sans-serif;
       background: #121212 url('fondo.jpg') no-repeat center center fixed;
@@ -34,12 +36,12 @@
     }
     header h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3.5em;
+      font-size: 3.2em;
       color: var(--accent);
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       margin: 0;
     }
-    nav a { color: white; margin: 0 15px; font-weight: bold;
+    nav a { color: white; margin: 0 12px; font-weight: bold;
       text-decoration: none; cursor: pointer;
     }
     .seccion { display: none; padding: 20px; }
@@ -60,430 +62,285 @@
     footer { text-align: center; padding: 20px;
       background-color: rgba(0,0,0,0.6); color: white; margin-top: 40px;
     }
-    #efecto-musica p {
-      animation: parpadeo 1s infinite; color: var(--accent-2); font-weight: bold;
+    .musica-btn { display: block; margin: 20px auto; padding: 10px 20px;
+      font-size: 16px; cursor: pointer; border: none; border-radius: 5px;
+      background-color: rgba(255,255,255,0.85); color:#222;
     }
-    @keyframes parpadeo {
-      0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; }
-    }
-    .musica-btn {
-      display: block; margin: 20px auto; padding: 10px 20px;
-      font-size: 16px; cursor: pointer; border: none;
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.8); color: #222;
-    }
-    #clima {
-      text-align: center; margin-top: 30px;
-      background-color: rgba(0,0,0,0.5);
-      padding: 15px; border-radius: 10px; max-width: 400px; margin: 30px auto;
-    }
-    #redes ul { list-style: none; padding: 0; }
-    #redes li { margin: 15px 0; }
-    #redes a {
-      color: white; font-size: 18px; text-decoration: none;
-    }
-    #redes i {
-      margin-right: 10px; font-size: 24px; vertical-align: middle;
-    }
-    #redes { background: transparent; padding: 20px; }
     .contenido-caja {
       background: var(--card-bg); padding: 25px;
-      border-radius: 10px; max-width: 900px; margin: 0 auto;
+      border-radius: 10px; max-width: 980px; margin: 0 auto;
     }
-    .contenido-caja h2, .contenido-caja h3 { margin-top: 20px; color: var(--accent); }
+    .contenido-caja h2 { margin-top: 4px; color: var(--accent); }
 
-    /* Acordeón */
-    .seccion-proyecto {
-      border-left: 3px solid var(--accent);
-      padding-left: 15px;
-      margin-top: 20px;
+    /* PROYECTOS: visor tipo PDF embebido pero con marco y controles */
+    .viewer-wrap {
+      margin-top: 18px;
+      display:flex; flex-direction:column; gap:12px; align-items:center;
     }
-    .seccion-proyecto h3 {
-      cursor: pointer;
-      color: var(--accent-2);
-      margin-bottom: 5px;
-    }
-    .contenido-proyecto {
-      display: none;
-      padding: 10px 0;
-      color: #ddd;
-    }
-
-    /* VISOR DE PAGINAS - DISEÑO TIPO HOJA (Word/Informe) */
-    .visor {
-      display:flex; flex-direction:column; align-items:center; gap:12px;
-      margin-top:20px;
-    }
-    .pagina {
-      width: 100%; max-width:780px; min-height:500px;
-      background: var(--page-bg); color:var(--page-text);
-      border-radius:6px; padding:28px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      border: 1px solid rgba(0,0,0,0.12);
+    .viewer-frame {
+      width:100%; max-width:920px; height:640px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      padding:12px;
       box-sizing:border-box;
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
-    .pagina h3 { color: var(--accent); margin-top:0; }
-    .pagina .meta { font-size:14px; color:#666; margin-bottom:14px; }
-    .visor-controls { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:780px; gap:10px; }
-    .btn {
-      background: var(--accent); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    .viewer-top {
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-bottom:8px;
     }
-    .btn:disabled { opacity:0.5; cursor:default; }
-    .page-indicator { color:#ddd; }
-    .page-dots { display:flex; gap:6px; align-items:center; }
-    .dot { width:10px; height:10px; border-radius:50%; background:#444; }
-    .dot.active { background: var(--accent-2); box-shadow:0 0 6px rgba(0,255,204,0.2); }
+    .viewer-controls { display:flex; gap:8px; align-items:center; }
+    .viewer-controls .btn {
+      padding:8px 12px; border-radius:8px; border:none; cursor:pointer; background:var(--accent);
+      color:white; font-weight:600;
+    }
+    .viewer-controls .btn:disabled { opacity:0.45; cursor: default; }
+    .viewer-status { color:var(--muted); font-size:14px; }
+    .viewer-iframe {
+      width:100%; height:560px; border:none; border-radius:8px; background:#fff;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .viewer-bottom { display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:8px; color:var(--muted); font-size:13px; }
+    .page-input { width:70px; padding:6px 8px; border-radius:6px; border:1px solid rgba(0,0,0,0.12); }
 
-    /* Responsivo */
-    @media (max-width:820px){
-      .pagina { padding:18px; min-height:420px; }
-      header h1 { font-size:2.4em; }
+    /* small screens */
+    @media (max-width:960px){
+      .viewer-frame { height:520px; }
+      .viewer-iframe { height:420px; }
+    }
+    @media (max-width:640px){
+      .viewer-frame { padding:8px; height:420px; }
+      .viewer-iframe { height:320px; }
+      header h1 { font-size:2rem; }
     }
   </style>
 </head>
 <body>
   <header>
-  <h1>La Meriendita 25</h1>
-  <nav>
-    <a onclick="mostrarSeccion('inicio')">Inicio</a>
-    <a onclick="mostrarSeccion('nosotros')">Sobre Nosotros</a>
-    <a onclick="mostrarSeccion('proyectos')">Proyectos</a>
-    <a onclick="mostrarSeccion('redes')">Redes</a>
-    <a onclick="mostrarSeccion('contacto')">Contacto</a>
-  </nav>
-</header>
+    <h1>La Meriendita 25</h1>
+    <nav>
+      <a onclick="mostrarSeccion('inicio')">Inicio</a>
+      <a onclick="mostrarSeccion('nosotros')">Sobre Nosotros</a>
+      <a onclick="mostrarSeccion('proyectos')">Proyectos</a>
+      <a onclick="mostrarSeccion('redes')">Redes</a>
+      <a onclick="mostrarSeccion('contacto')">Contacto</a>
+    </nav>
+  </header>
 
-<main>
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="seccion activa">
+      <section id="clima" class="contenido-caja">
+        <h2>Clima actual en Bonpland, Corrientes</h2>
+        <p id="infoClima">Cargando clima...</p>
+      </section>
 
-<!-- INICIO -->
-<section id="inicio" class="seccion activa">
-  <section id="clima">
-    <h2>Clima actual en Bonpland, Corrientes</h2>
-    <p id="infoClima">Cargando clima...</p>
-  </section>
+      <section id="musica" style="text-align:center; margin-top:18px;">
+        <audio id="musicaFondo" src="musica.mp3" loop></audio>
+        <div id="efecto-musica" style="display:none; text-align:center; margin-top:12px;">
+          <p style="color:#00ffcc; font-weight:bold;">♪ Música en reproducción ♪</p>
+        </div>
+        <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
+      </section>
+    </section>
 
-  <section id="musica">
-    <audio id="musicaFondo" src="musica.mp3" loop></audio>
-    <div id="efecto-musica" style="display:none; text-align:center; margin-top:20px;">
-      <p>♪ Música en reproducción ♪</p>
-    </div>
-    <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
-  </section>
-</section>
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="seccion">
+      <div class="contenido-caja">
+        <h2>¿Quiénes somos?</h2>
+        <p>Somos un grupo de tres estudiantes de 4° año del Colegio Secundario "Amado Bonpland", ubicado en un pueblito llamado Bonpland en la provincia de Corrientes. Este proyecto forma parte del espacio curricular T.I.I.C., guiado por nuestra profesora Natalia Romero.</p>
 
-<!-- NOSOTROS (NO TOCAR) -->
-<section id="nosotros" class="seccion">
-  <div class="contenido-caja">
-    <h2>¿Quiénes somos?</h2>
-    <p>Somos un grupo de tres estudiantes de 4° año del Colegio Secundario "Amado Bonpland", ubicado en un pueblito llamado Bonpland en la provincia de Corrientes. Este proyecto forma parte del espacio curricular T.I.I.C., guiado por nuestra profesora Natalia Romero.</p>
+        <h2>¿Cómo surgió el proyecto?</h2>
+        <p>La idea del emprendimiento surgió como parte de un trabajo práctico de T.I.I.C. El objetivo fue crear un producto que pueda ponerse a la venta dentro del colegio, aplicando organización, costos, planificación y manejo de herramientas digitales.</p>
 
-    <h2>¿Cómo surgió el proyecto?</h2>
-    <p>La idea del emprendimiento surgió como parte de un trabajo práctico de T.I.I.C. El objetivo fue crear un producto que pueda ponerse a la venta dentro del colegio, aplicando organización, costos, planificación y manejo de herramientas digitales.</p>
+        <h2>Nuestras metas</h2>
+        <p>El objetivo principal es desarrollar un emprendimiento real que nos permita aprender sobre organización, trabajo en equipo, producción, ventas y uso de herramientas digitales.</p>
+      </div>
+    </section>
 
-    <h2>Nuestras metas</h2>
-    <p>El objetivo principal es desarrollar un emprendimiento real que nos permita aprender sobre organización, trabajo en equipo, producción, ventas y uso de herramientas digitales.</p>
-  </div>
-</section>
+    <!-- PROYECTOS (***** AQUÍ ESTÁ EL VISOR COMPLETO DEL PDF CON DISEÑO *****) -->
+    <section id="proyectos" class="seccion">
+      <div class="contenido-caja">
+        <h2>Nuestros Proyectos Destacados</h2>
+        <p>A continuación podés ver el informe completo de <strong>La Meriendita</strong> con diseño integrado en la web. Usá las flechas para navegar por las páginas (el visor carga el PDF dentro de la página).</p>
 
-<!-- PROYECTOS -->
-<section id="proyectos" class="seccion">
-  <div class="contenido-caja">
-    <h2>Nuestros Proyectos Destacados</h2>
-    <p>Aquí puedes explorar los trabajos en los que hemos estado enfocados como equipo.</p>
-        <!-- Proyecto: Visor por Páginas (Informe libre, no PDF) -->
-    <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('visorProyecto')">📄 Proyecto: La Meriendita 25 (Informe web por páginas) <i class="fas fa-caret-down"></i></h3>
-      <div id="visorProyecto" class="contenido-proyecto" aria-hidden="true">
-        <p>Visualizador tipo informe — podés navegar página por página como si fuera un documento Word, pero con diseño web limpio. El contenido está adaptado desde el PDF original para verse bien en la web.</p>
+        <div class="viewer-wrap" role="region" aria-label="Visor del proyecto La Meriendita">
+          <div class="viewer-frame">
+            <!-- top controls -->
+            <div class="viewer-top">
+              <div class="viewer-controls" aria-hidden="false">
+                <button id="btnPrev" class="btn" title="Página anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="btnNext" class="btn" title="Página siguiente"><i class="fas fa-arrow-right"></i></button>
 
-        <div class="visor" aria-live="polite">
-          <div id="contenedorPagina" class="pagina" role="document" aria-label="Página del informe">
-            <!-- El contenido de la página se inyecta dinámicamente al abrir el visor -->
-          </div>
+                <label style="margin-left:10px; color:var(--text-light); font-weight:600;">Ir a página:</label>
+                <input id="inputPage" class="page-input" type="number" min="1" value="1" />
+                <button id="btnGo" class="btn" style="padding:6px 10px;">Ir</button>
+              </div>
 
-          <div class="visor-controls">
-            <div>
-              <button id="prevBtn" class="btn" onclick="prevPage()"><i class="fas fa-arrow-left"></i> Anterior</button>
-              <button id="nextBtn" class="btn" onclick="nextPage()">Siguiente <i class="fas fa-arrow-right"></i></button>
+              <div class="viewer-status" id="viewerStatus">Página <span id="currentPage">1</span> / <span id="totalPages">--</span></div>
             </div>
 
-            <div class="page-indicator">
-              <span id="indicador">Página <span id="numPagina">1</span> / <span id="totalPaginas">1</span></span>
+            <!-- iframe that loads the PDF; uses #page= to jump -->
+            <iframe id="pdfFrame" class="viewer-iframe"
+              src="/mnt/data/T.I.I.C.Noviembre25.pdf#page=1"
+              title="Informe La Meriendita"
+              aria-label="Visor de PDF integrado"></iframe>
+
+            <!-- bottom row -->
+            <div class="viewer-bottom">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <!-- Open in new tab (useful if browser PDF doesn't support #page) -->
+                <a id="openNew" class="btn" href="/mnt/data/T.I.I.C.Noviembre25.pdf" target="_blank" rel="noopener" style="background:#006b5a;">
+                  <i class="fas fa-external-link-alt"></i> Abrir en pestaña
+                </a>
+                <a id="downloadPdf" class="btn" href="/mnt/data/T.I.I.C.Noviembre25.pdf" download style="background:#007f87;">
+                  <i class="fas fa-file-download"></i> Descargar PDF
+                </a>
+              </div>
+
+              <div style="text-align:right; color:var(--muted); font-size:13px;">
+                Formato: Informe original • Autor: Juan Ferreyra y equipo
+              </div>
             </div>
-
-            <div class="page-dots" id="dots"></div>
-          </div>
-
-          <div style="margin-top:10px; width:100%; max-width:780px; display:flex; justify-content:space-between; align-items:center;">
-            <a href="https://juancitofer25.github.io/bonplandcorrientes.com.ar/T.I.I.C.Noviembre25.pdf" download class="btn" style="background:#007f87;"><i class="fas fa-file-download"></i> Descargar PDF</a>
-            <div style="color:#ccc; font-size:14px;">Formato: Informe web • Autor: Juan Ferreyra y equipo</div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Proyectos extra (puedes añadir más) -->
-    <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('proyecto1')">💻 Proyecto Word: Portada, Índice y Desarrollo <i class="fas fa-caret-down"></i></h3>
-      <div id="proyecto1" class="contenido-proyecto">
-        <p>Proyecto realizado en Word con formato profesional.</p>
+    <!-- REDES -->
+    <section id="redes" class="seccion">
+      <div class="contenido-caja">
+        <h2>Nuestras Redes Sociales:</h2>
+        <ul style="list-style:none; padding:0;">
+          <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
+          <li><a href="https://www.youtube.com/tuusuario" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
+          <li><a href="https://wa.me/543772612954" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a></li>
+        </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('proyecto2')">📚 Otro Trabajo / Catálogo <i class="fas fa-caret-down"></i></h3>
-      <div id="proyecto2" class="contenido-proyecto">
-        <p>Espacio para subir más trabajos, fotos o enlaces.</p>
+    <!-- CONTACTO -->
+    <section id="contacto" class="seccion">
+      <div class="contenido-caja">
+        <h2>Contacto</h2>
+        <form action="https://formspree.io/f/mqaleykl" method="POST">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          <label for="email">Correo:</label>
+          <input type="email" id="email" name="email" placeholder="Tu correo" required />
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" rows="3" required></textarea>
+          <button type="submit">Enviar mensaje</button>
+        </form>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-  
-  <!-- REDES -->
-<section id="redes" class="seccion">
-  <h2>Nuestras Redes Sociales:</h2>
-  <ul>
-    <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
-    <li><a href="https://www.youtube.com/tuusuario" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
-    <li><a href="https://wa.me/543772612954" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a></li>
-  </ul>
-</section>
+  </main>
 
-<!-- CONTACTO -->
-<section id="contacto" class="seccion">
-  <h2>Contacto</h2>
-  <form action="https://formspree.io/f/mqaleykl" method="POST">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-    <label for="email">Correo:</label>
-    <input type="email" id="email" name="email" placeholder="Tu correo" required />
-    <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" rows="3" required></textarea>
-    <button type="submit">Enviar mensaje</button>
-  </form>
-</section>
+  <footer>
+    © 2025 Juan Ferreyra y Equipo. Todos los derechos reservados.<br>Esta página fue creada por estudiantes :)
+  </footer>
 
-</main>
-
-<footer>
-  © 2025 Juan Ferreyra y Equipo. Todos los derechos reservados.<br>Esta página fue creada por estudiantes :)
-</footer>
-
-<script>
-/* ---------- Navegación secciones ---------- */
-function mostrarSeccion(id) {
-  document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-  document.getElementById(id).classList.add('activa');
-}
-
-/* ---------- Música ---------- */
-const musica = document.getElementById('musicaFondo');
-const efecto = document.getElementById('efecto-musica');
-function toggleMusica() {
-  if (!musica) return;
-  if (musica.paused) {
-    musica.play(); if(efecto) efecto.style.display = 'block';
-  } else {
-    musica.pause(); if(efecto) efecto.style.display = 'none';
-  }
-}
-
-/* ---------- Acordeón (Proyectos) ---------- */
-function toggleContenido(id) {
-  const cont = document.getElementById(id);
-  if (!cont) return;
-  const icon = cont.previousElementSibling.querySelector('i');
-
-  if (cont.style.display === "block" || cont.classList.contains('open')) {
-    cont.style.display = "none";
-    cont.classList.remove('open');
-    if(icon){ icon.classList.remove("fa-caret-up"); icon.classList.add("fa-caret-down"); }
-  } else {
-    cont.style.display = "block";
-    cont.classList.add('open');
-    if(icon){ icon.classList.remove("fa-caret-down"); icon.classList.add("fa-caret-up"); }
-
-    // Si abrimos el visor del proyecto, iniciamos el visor dinámico (al retraso para garantizar render)
-    if (id === "visorProyecto") {
-      setTimeout(iniciarVisorSiEsNecesario, 100);
+  <script>
+    /* ---------- Navegación secciones ---------- */
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
     }
-  }
-}
 
-/* ---------- Obtener clima ---------- */
-async function obtenerClima() {
-  try {
-    const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
-    if (!res.ok) throw new Error('Error al obtener datos del clima');
-    const data = await res.json();
-    const clima = data.current_weather;
-    const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
-    document.getElementById("infoClima").textContent = info;
-  } catch (error) {
-    document.getElementById("infoClima").textContent = `Error al cargar el clima.`;
-    console.error("Error fetching weather:", error);
-  }
-}
-obtenerClima();
-setInterval(obtenerClima, 1800000);
+    /* ---------- Música ---------- */
+    const musica = document.getElementById('musicaFondo');
+    const efecto = document.getElementById('efecto-musica');
+    function toggleMusica() {
+      if (!musica) return;
+      if (musica.paused) {
+        musica.play(); if(efecto) efecto.style.display = 'block';
+      } else {
+        musica.pause(); if(efecto) efecto.style.display = 'none';
+      }
+    }
 
-/* ---------- VISOR DE PAGINAS (INICIALIZACION DEMORADA) ---------- */
-/* Contenido adaptado del PDF que subiste (resumido para web). Puedes editar los textos abajo. */
+    /* ---------- Obtener clima ---------- */
+    async function obtenerClima() {
+      try {
+        const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
+        if (!res.ok) throw new Error('Error al obtener datos del clima');
+        const data = await res.json();
+        const clima = data.current_weather;
+        const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
+        document.getElementById("infoClima").textContent = info;
+      } catch (error) {
+        document.getElementById("infoClima").textContent = `Error al cargar el clima.`;
+        console.error("Error fetching weather:", error);
+      }
+    }
+    obtenerClima();
+    setInterval(obtenerClima, 1800000);
 
-const paginas = [
-  {
-    titulo: "La Meriendita - Proyecto Escolar",
-    meta: "Materia: T.I.I.C. • Colegio Secundario Amado Bonpland",
-    contenido: `
-      <h4>Proyecto Escolar</h4>
-      <p>La Meriendita es un emprendimiento escolar a cargo de la profesora Natalia Romero.</p>
-      <p><strong>Integrantes:</strong> Ferreyra Juan, Canteros Joaquín, Olivera Eduardo.</p>
-      <p><strong>Producto:</strong> Empanadas de pollo.</p>
-      <p><em>Slogan:</em> “UN CLÁSICO QUE NUNCA FALLA.”</p>
-    `
-  },
-  {
-    titulo: "Objetivos",
-    meta: "Objetivos del proyecto",
-    contenido: `
-      <ul>
-        <li>Desarrollar habilidades emprendedoras.</li>
-        <li>Aprender organización y trabajo en equipo.</li>
-        <li>Planificar la producción alimenticia.</li>
-      </ul>
-    `
-  },
-  {
-    titulo: "Descripción del Producto",
-    meta: "Detalles del producto",
-    contenido: `
-      <p>Empanadas de pollo caseras, elaboradas con recetas caseras que priorizan sabor y presentación.</p>
-    `
-  },
-  {
-    titulo: "Fundamentación",
-    meta: "Por qué elegimos empanadas",
-    contenido: `
-      <p>Elegimos empanadas de pollo porque son un producto tradicional argentino, sabroso y fácil de preparar.</p>
-    `
-  },
-  {
-    titulo: "Análisis FODA",
-    meta: "Fortalezas, Oportunidades, Debilidades, Amenazas",
-    contenido: `
-      <p><strong>Fortalezas:</strong> Recetas caseras y buena organización del grupo.</p>
-      <p><strong>Oportunidades:</strong> Promoción en redes y ventas durante recreos.</p>
-      <p><strong>Debilidades:</strong> Coordinación de tiempos y recursos limitados.</p>
-      <p><strong>Amenazas:</strong> Aumento en el precio de insumos.</p>
-    `
-  },
-  {
-    titulo: "Investigación y Encuestas",
-    meta: "Encuestas realizadas",
-    contenido: `
-      <p>Se realizaron encuestas entre compañeros y docentes; la mayoría prefiere empanadas calientes y caseras.</p>
-    `
-  },
-  {
-    titulo: "Ingredientes y Costos (ejemplo)",
-    meta: "Insumos y precios",
-    contenido: `
-      <ul>
-        <li>2 kg de pollo</li>
-        <li>1 morrón</li>
-        <li>2 kg de harina</li>
-        <li>1 docena de huevos</li>
-        <li>Cebolla, condimentos, bolsas, pegatinas</li>
-      </ul>
-      <p>Precios indicativos: Docena $7.500 • Media docena $3.750 • Unidad $625.</p>
-    `
-  },
-  {
-    titulo: "Costos Variables y Folleto",
-    meta: "Registro de costos y material promocional",
-    contenido: `
-      <p>Registro de compras, envases y diseño del folleto para la feria escolar.</p>
-    `
-  },
-  {
-    titulo: "Conclusión y Próximos Pasos",
-    meta: "Resumen y acciones futuras",
-    contenido: `
-      <p>Optimizar recetas, planificar turnos y diseñar una estrategia de difusión en redes sociales.</p>
-    `
-  }
-];
+    /* ---------- Visor PDF (iframe + controls con #page=) ---------- */
+    (function(){
+      const pdfUrl = '/mnt/data/T.I.I.C.Noviembre25.pdf'; // local path — cambia a la URL de GitHub Pages cuando subas
+      const frame = document.getElementById('pdfFrame');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const inputPage = document.getElementById('inputPage');
+      const btnGo = document.getElementById('btnGo');
+      const currentPageEl = document.getElementById('currentPage');
+      const totalPagesEl = document.getElementById('totalPages');
 
-/* Variables visor */
-let paginaActual = 0;
-let iniciado = false;
-let contenedor, numPaginaEl, totalPaginasEl, dotsContainer, prevBtn, nextBtn;
+      // Intentamos obtener el número total de páginas cargando el PDF en un objeto <embed> no visible
+      // Nota: no todos los navegadores permiten leer el total de páginas desde el PDF embebido.
+      // Por seguridad, colocamos un valor estimado y permitimos navegación limitada.
+      let totalPages = 39; // sabemos que tu PDF tiene 39 páginas — lo dejamos fijo
+      let currentPage = 1;
 
-/* Iniciar visor solo cuando el acordeón esté abierto (y si no se inició antes) */
-function iniciarVisorSiEsNecesario() {
-  if (iniciado) return;
-  contenedor = document.getElementById('contenedorPagina');
-  numPaginaEl = document.getElementById('numPagina');
-  totalPaginasEl = document.getElementById('totalPaginas');
-  dotsContainer = document.getElementById('dots');
-  prevBtn = document.getElementById('prevBtn');
-  nextBtn = document.getElementById('nextBtn');
+      function updateUI(){
+        currentPageEl.textContent = currentPage;
+        totalPagesEl.textContent = totalPages;
+        inputPage.value = currentPage;
+        btnPrev.disabled = (currentPage <= 1);
+        btnNext.disabled = (currentPage >= totalPages);
+      }
 
-  if (!contenedor) return; // seguridad
+      function loadPage(n){
+        if(n < 1) n = 1;
+        if(n > totalPages) n = totalPages;
+        currentPage = n;
+        // Usamos fragment identifier #page= para pedir al visor de PDF que abra la página
+        // (funciona en la mayoría de navegadores y en GitHub Pages)
+        frame.src = pdfUrl + '#page=' + currentPage;
+        updateUI();
+      }
 
-  totalPaginasEl.textContent = paginas.length;
-  renderPagina(0);
-  iniciado = true;
-}
+      btnPrev.addEventListener('click', () => loadPage(currentPage - 1));
+      btnNext.addEventListener('click', () => loadPage(currentPage + 1));
+      btnGo.addEventListener('click', () => {
+        const n = Number(inputPage.value) || 1;
+        loadPage(n);
+      });
+      inputPage.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); btnGo.click(); }});
 
-/* Render página */
-function renderPagina(index) {
-  if (index < 0) index = 0;
-  if (index >= paginas.length) index = paginas.length - 1;
-  paginaActual = index;
-  const p = paginas[index];
-  contenedor.innerHTML = `
-    <h3>${p.titulo}</h3>
-    <div class="meta">${p.meta}</div>
-    <div class="cuerpo">${p.contenido}</div>
-  `;
-  numPaginaEl.textContent = index + 1;
-  updateButtons();
-  renderDots();
-}
+      // Inicializa en página 1
+      loadPage(1);
 
-/* Navegación */
-function prevPage(){ if (paginaActual > 0) renderPagina(paginaActual - 1); }
-function nextPage(){ if (paginaActual < paginas.length - 1) renderPagina(paginaActual + 1); }
+      // Si el usuario abre el informe desde la sección Proyectos sin haber cargado la sección,
+      // aseguramos que el iframe esté en la página 1 al mostrarse
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') loadPage(currentPage);
+      });
 
-function updateButtons(){
-  if (!prevBtn || !nextBtn) return;
-  prevBtn.disabled = (paginaActual === 0);
-  nextBtn.disabled = (paginaActual === paginas.length - 1);
-}
-
-/* Dots */
-function renderDots(){
-  if (!dotsContainer) return;
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < paginas.length; i++){
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === paginaActual ? ' active' : '');
-    dot.title = 'Ir a página ' + (i+1);
-    dot.addEventListener('click', () => renderPagina(i));
-    dotsContainer.appendChild(dot);
-  }
-}
-
-/* Inicialización ligera al cargar: no inicia el visor hasta abrir el acordeón */
-document.addEventListener('DOMContentLoaded', function(){
-  // nada aquí, el visor arranca cuando abrís el acordeón
-});
-</script>
+      // Si subís a GitHub Pages y querés abrir en la página pasada por URL, soporte:
+      try {
+        const hash = new URL(window.location.href).hash;
+        const m = hash.match(/page=(\d+)/);
+        if (m) {
+          const p = parseInt(m[1],10);
+          if (!isNaN(p)) loadPage(p);
+        }
+      } catch(e){}
+    })();
+  </script>
 </body>
 </html>
-
-
-    
-
