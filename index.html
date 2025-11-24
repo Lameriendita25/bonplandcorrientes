@@ -141,9 +141,8 @@
     }
   </style>
 </head>
-
 <body>
-<header>
+  <header>
   <h1>La Meriendita 25</h1>
   <nav>
     <a onclick="mostrarSeccion('inicio')">Inicio</a>
@@ -189,19 +188,17 @@
 <!-- PROYECTOS -->
 <section id="proyectos" class="seccion">
   <div class="contenido-caja">
-
     <h2>Nuestros Proyectos Destacados</h2>
     <p>Aquí puedes explorar los trabajos en los que hemos estado enfocados como equipo.</p>
-
-    <!-- Proyecto: Visor por Páginas (Informe) -->
+        <!-- Proyecto: Visor por Páginas (Informe libre, no PDF) -->
     <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('visorProyecto')">📄 Proyecto: La Meriendita 25 (Informe por Páginas) <i class="fas fa-caret-down"></i></h3>
-      <div id="visorProyecto" class="contenido-proyecto">
-        <p>Visualizador tipo informe — podés navegar página por página como si fuera un documento Word. El diseño es claro y listo para presentar.</p>
+      <h3 onclick="toggleContenido('visorProyecto')">📄 Proyecto: La Meriendita 25 (Informe web por páginas) <i class="fas fa-caret-down"></i></h3>
+      <div id="visorProyecto" class="contenido-proyecto" aria-hidden="true">
+        <p>Visualizador tipo informe — podés navegar página por página como si fuera un documento Word, pero con diseño web limpio. El contenido está adaptado desde el PDF original para verse bien en la web.</p>
 
         <div class="visor" aria-live="polite">
           <div id="contenedorPagina" class="pagina" role="document" aria-label="Página del informe">
-            <!-- contenido generado por JS -->
+            <!-- El contenido de la página se inyecta dinámicamente al abrir el visor -->
           </div>
 
           <div class="visor-controls">
@@ -217,16 +214,15 @@
             <div class="page-dots" id="dots"></div>
           </div>
 
-          <div style="margin-top:10px; width:100%; max-width:780px; display:flex; justify-content:space-between;">
-            <!-- descarga del pdf original -->
-            <a href="/mnt/data/T.I.I.C.Noviembre25.pdf" download class="btn" style="background:#007f87;"><i class="fas fa-file-download"></i> Descargar PDF</a>
+          <div style="margin-top:10px; width:100%; max-width:780px; display:flex; justify-content:space-between; align-items:center;">
+            <a href="https://juancitofer25.github.io/bonplandcorrientes.com.ar/T.I.I.C.Noviembre25.pdf" download class="btn" style="background:#007f87;"><i class="fas fa-file-download"></i> Descargar PDF</a>
             <div style="color:#ccc; font-size:14px;">Formato: Informe web • Autor: Juan Ferreyra y equipo</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PROYECTO WORD (mantengo el tuyo) -->
+    <!-- Proyectos extra (puedes añadir más) -->
     <div class="seccion-proyecto">
       <h3 onclick="toggleContenido('proyecto1')">💻 Proyecto Word: Portada, Índice y Desarrollo <i class="fas fa-caret-down"></i></h3>
       <div id="proyecto1" class="contenido-proyecto">
@@ -234,18 +230,17 @@
       </div>
     </div>
 
-    <!-- PROYECTO PAGINA WEB -->
     <div class="seccion-proyecto">
-      <h3 onclick="toggleContenido('proyecto3')">🌐 Nuestra Página Web Personal (HTML/CSS) <i class="fas fa-caret-down"></i></h3>
-      <div id="proyecto3" class="contenido-proyecto">
-        <p>El desarrollo de esta página web nos permitió aplicar conocimientos de HTML, CSS y JavaScript, incluyendo efectos visuales y consumo de APIs.</p>
+      <h3 onclick="toggleContenido('proyecto2')">📚 Otro Trabajo / Catálogo <i class="fas fa-caret-down"></i></h3>
+      <div id="proyecto2" class="contenido-proyecto">
+        <p>Espacio para subir más trabajos, fotos o enlaces.</p>
       </div>
     </div>
 
   </div>
 </section>
-
-<!-- REDES -->
+  
+  <!-- REDES -->
 <section id="redes" class="seccion">
   <h2>Nuestras Redes Sociales:</h2>
   <ul>
@@ -296,21 +291,27 @@ function toggleMusica() {
 
 /* ---------- Acordeón (Proyectos) ---------- */
 function toggleContenido(id) {
-  const contenido = document.getElementById(id);
-  if(!contenido) return;
-  const icono = contenido.previousElementSibling.querySelector('i');
-  if (contenido.style.display === 'block' || contenido.classList.contains('open')) {
-    contenido.style.display = 'none';
-    contenido.classList.remove('open');
-    if(icono){ icono.classList.remove('fa-caret-up'); icono.classList.add('fa-caret-down'); }
+  const cont = document.getElementById(id);
+  if (!cont) return;
+  const icon = cont.previousElementSibling.querySelector('i');
+
+  if (cont.style.display === "block" || cont.classList.contains('open')) {
+    cont.style.display = "none";
+    cont.classList.remove('open');
+    if(icon){ icon.classList.remove("fa-caret-up"); icon.classList.add("fa-caret-down"); }
   } else {
-    contenido.style.display = 'block';
-    contenido.classList.add('open');
-    if(icono){ icono.classList.remove('fa-caret-down'); icono.classList.add('fa-caret-up'); }
+    cont.style.display = "block";
+    cont.classList.add('open');
+    if(icon){ icon.classList.remove("fa-caret-down"); icon.classList.add("fa-caret-up"); }
+
+    // Si abrimos el visor del proyecto, iniciamos el visor dinámico (al retraso para garantizar render)
+    if (id === "visorProyecto") {
+      setTimeout(iniciarVisorSiEsNecesario, 100);
+    }
   }
 }
 
-/* ---------- Obtener clima (sigue igual) ---------- */
+/* ---------- Obtener clima ---------- */
 async function obtenerClima() {
   try {
     const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
@@ -327,86 +328,162 @@ async function obtenerClima() {
 obtenerClima();
 setInterval(obtenerClima, 1800000);
 
-/* ---------- VISOR DE PAGINAS (Informe) ---------- */
-/* Contenido de las páginas: lo armé con la info del PDF T.I.I.C.Noviembre25.pdf */
+/* ---------- VISOR DE PAGINAS (INICIALIZACION DEMORADA) ---------- */
+/* Contenido adaptado del PDF que subiste (resumido para web). Puedes editar los textos abajo. */
+
 const paginas = [
   {
     titulo: "La Meriendita - Proyecto Escolar",
-    meta: "Materia: Tecnología de la información y la comunicación (T.I.I.C.) • Colegio Secundario Amado Bonpland",
+    meta: "Materia: T.I.I.C. • Colegio Secundario Amado Bonpland",
     contenido: `
       <h4>Proyecto Escolar</h4>
       <p>La Meriendita es un emprendimiento escolar a cargo de la profesora Natalia Romero.</p>
       <p><strong>Integrantes:</strong> Ferreyra Juan, Canteros Joaquín, Olivera Eduardo.</p>
-      <p><strong>Producto:</strong> Empanadas.</p>
+      <p><strong>Producto:</strong> Empanadas de pollo.</p>
       <p><em>Slogan:</em> “UN CLÁSICO QUE NUNCA FALLA.”</p>
     `
   },
   {
-    titulo: "Objetivos y Fundamentación",
-    meta: "Objetivos generales del proyecto",
+    titulo: "Objetivos",
+    meta: "Objetivos del proyecto",
     contenido: `
-      <h4>Objetivos</h4>
       <ul>
         <li>Desarrollar habilidades emprendedoras.</li>
-        <li>Planificación y presentación de un producto alimenticio.</li>
-        <li>Aprender a organizar la producción y trabajar en equipo.</li>
+        <li>Aprender organización y trabajo en equipo.</li>
+        <li>Planificar la producción alimenticia.</li>
       </ul>
-      <h4>Fundamentación</h4>
-      <p>Elegimos empanadas de pollo por ser un producto tradicional argentino, de fácil preparación y con amplia aceptación en la comunidad escolar.</p>
     `
   },
   {
     titulo: "Descripción del Producto",
-    meta: "Detalles del producto elegido",
+    meta: "Detalles del producto",
     contenido: `
-      <h4>Descripción</h4>
-      <p>Empanadas de pollo caseras, elaboradas con recetas caseras que priorizan sabor y presentación. Buscamos un equilibrio entre calidad y coste para una venta accesible dentro del colegio.</p>
+      <p>Empanadas de pollo caseras, elaboradas con recetas caseras que priorizan sabor y presentación.</p>
+    `
+  },
+  {
+    titulo: "Fundamentación",
+    meta: "Por qué elegimos empanadas",
+    contenido: `
+      <p>Elegimos empanadas de pollo porque son un producto tradicional argentino, sabroso y fácil de preparar.</p>
     `
   },
   {
     titulo: "Análisis FODA",
-    meta: "Fortalezas, Oportunidades, Debilidades y Amenazas",
+    meta: "Fortalezas, Oportunidades, Debilidades, Amenazas",
     contenido: `
-      <h4>Análisis FODA</h4>
       <p><strong>Fortalezas:</strong> Recetas caseras y buena organización del grupo.</p>
-      <p><strong>Oportunidades:</strong> Promoción por redes sociales y ventas durante recreos.</p>
-      <p><strong>Debilidades:</strong> Coordinación de tiempos entre estudio y producción; recursos limitados.</p>
-      <p><strong>Amenazas:</strong> Aumento en el precio de insumos (por ejemplo, subida del precio de la carne).</p>
+      <p><strong>Oportunidades:</strong> Promoción en redes y ventas durante recreos.</p>
+      <p><strong>Debilidades:</strong> Coordinación de tiempos y recursos limitados.</p>
+      <p><strong>Amenazas:</strong> Aumento en el precio de insumos.</p>
     `
   },
   {
     titulo: "Investigación y Encuestas",
-    meta: "Resultados de encuestas internas",
+    meta: "Encuestas realizadas",
     contenido: `
-      <h4>Investigación de Mercado</h4>
-      <p>Se realizaron encuestas entre compañeros y docentes. La mayoría mostró interés en comprar empanadas durante los recreos. También se analizó precios del mercado para fijar un precio competitivo.</p>
-      <p>Resultados breves: Preferencias por empanadas calientes y caseras; la mayoría sin aceituna; aceptación para venta en recreo.</p>
+      <p>Se realizaron encuestas entre compañeros y docentes; la mayoría prefiere empanadas calientes y caseras.</p>
     `
   },
   {
-    titulo: "Ingredientes y Costos",
-    meta: "Lista de insumos y algunos precios indicativos",
+    titulo: "Ingredientes y Costos (ejemplo)",
+    meta: "Insumos y precios",
     contenido: `
-      <h4>Ingredientes (ejemplo)</h4>
       <ul>
-        <li>2 kg de carne de pollo</li>
-        <li>1 morrón verde</li>
+        <li>2 kg de pollo</li>
+        <li>1 morrón</li>
         <li>2 kg de harina</li>
         <li>1 docena de huevos</li>
         <li>Cebolla, condimentos, bolsas, pegatinas</li>
       </ul>
-      <p>Precios aproximados (como en el informe): docena $7.500 • media docena $3.750 • unidad $625.</p>
+      <p>Precios indicativos: Docena $7.500 • Media docena $3.750 • Unidad $625.</p>
     `
   },
   {
     titulo: "Costos Variables y Folleto",
-    meta: "Costos variables / Folleto / Catálogo",
+    meta: "Registro de costos y material promocional",
     contenido: `
-      <h4>Costo variable</h4>
-      <p>Se consideran insumos, envases, etiquetas y mano de obra. Es importante registrar compras y calcular precio por unidad para asegurar rentabilidad.</p>
-      <h4>Folleto / Catálogo</h4>
-      <p>Se puede preparar un folleto con fotos, precios y promociones para exhibir en la feria escolar o en redes.</p>
+      <p>Registro de compras, envases y diseño del folleto para la feria escolar.</p>
     `
   },
   {
     titulo: "Conclusión y Próximos Pasos",
+    meta: "Resumen y acciones futuras",
+    contenido: `
+      <p>Optimizar recetas, planificar turnos y diseñar una estrategia de difusión en redes sociales.</p>
+    `
+  }
+];
+
+/* Variables visor */
+let paginaActual = 0;
+let iniciado = false;
+let contenedor, numPaginaEl, totalPaginasEl, dotsContainer, prevBtn, nextBtn;
+
+/* Iniciar visor solo cuando el acordeón esté abierto (y si no se inició antes) */
+function iniciarVisorSiEsNecesario() {
+  if (iniciado) return;
+  contenedor = document.getElementById('contenedorPagina');
+  numPaginaEl = document.getElementById('numPagina');
+  totalPaginasEl = document.getElementById('totalPaginas');
+  dotsContainer = document.getElementById('dots');
+  prevBtn = document.getElementById('prevBtn');
+  nextBtn = document.getElementById('nextBtn');
+
+  if (!contenedor) return; // seguridad
+
+  totalPaginasEl.textContent = paginas.length;
+  renderPagina(0);
+  iniciado = true;
+}
+
+/* Render página */
+function renderPagina(index) {
+  if (index < 0) index = 0;
+  if (index >= paginas.length) index = paginas.length - 1;
+  paginaActual = index;
+  const p = paginas[index];
+  contenedor.innerHTML = `
+    <h3>${p.titulo}</h3>
+    <div class="meta">${p.meta}</div>
+    <div class="cuerpo">${p.contenido}</div>
+  `;
+  numPaginaEl.textContent = index + 1;
+  updateButtons();
+  renderDots();
+}
+
+/* Navegación */
+function prevPage(){ if (paginaActual > 0) renderPagina(paginaActual - 1); }
+function nextPage(){ if (paginaActual < paginas.length - 1) renderPagina(paginaActual + 1); }
+
+function updateButtons(){
+  if (!prevBtn || !nextBtn) return;
+  prevBtn.disabled = (paginaActual === 0);
+  nextBtn.disabled = (paginaActual === paginas.length - 1);
+}
+
+/* Dots */
+function renderDots(){
+  if (!dotsContainer) return;
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < paginas.length; i++){
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === paginaActual ? ' active' : '');
+    dot.title = 'Ir a página ' + (i+1);
+    dot.addEventListener('click', () => renderPagina(i));
+    dotsContainer.appendChild(dot);
+  }
+}
+
+/* Inicialización ligera al cargar: no inicia el visor hasta abrir el acordeón */
+document.addEventListener('DOMContentLoaded', function(){
+  // nada aquí, el visor arranca cuando abrís el acordeón
+});
+</script>
+</body>
+</html>
+
+
+    
+
