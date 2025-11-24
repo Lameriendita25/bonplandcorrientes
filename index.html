@@ -9,10 +9,10 @@
   <meta name="keywords" content="Bonpland, Corrientes, clima, contacto, información, pueblo" />
   <meta name="author" content="Juan Ferreyra y amigos" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Mi Página Personal - Bonpland Corrientes" />
-  <meta property="og:description" content="Conocé todo sobre Bonpland Corrientes. El clima, contacto, ubicación y más." />
-  <meta property="og:image" content="https://juancitofer25.github.io/bonplandcorrientes/imagen.jpg" />
-  <meta property="og:url" content="https://juancitofer25.github.io/bonplandcorrientes/" />
+  <meta property="og:title" content="La Meriendita 25 - Bonpland Corrientes" />
+  <meta property="og:description" content="Emprendimiento escolar - La Meriendita 25: empanadas y proyecto T.I.I.C." />
+  <meta property="og:image" content="https://lameriendita25.github.io/bonplandcorrientes/imagen.jpg" />
+  <meta property="og:url" content="https://lameriendita25.github.io/bonplandcorrientes/" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
@@ -22,99 +22,124 @@
       --accent:#00adb5;
       --accent-2:#00ffcc;
       --card-bg: rgba(0,0,0,0.45);
-      --viewer-bg: rgba(255,255,255,0.06);
-      --page-frame: rgba(255,255,255,0.06);
-      --text-light: #ddd;
-      --muted: #bfbfbf;
+      --glass: rgba(255,255,255,0.06);
+      --page-bg: rgba(255,255,255,0.98);
+      --page-text:#222;
     }
+    *{box-sizing:border-box}
     body { margin: 0; padding: 20px; font-family: Arial, sans-serif;
-      background: #121212 url('fondo.jpg') no-repeat center center fixed;
+      background: linear-gradient(180deg,#0b0b0d 0%, #111315 100%), url('fondo.jpg') no-repeat center center fixed;
       background-size: cover; color: white;
     }
-    header { text-align: center; background-color: rgba(0,0,0,0.6);
-      padding: 20px; margin-bottom: 40px;
+    header { text-align: center; background-color: rgba(0,0,0,0.55);
+      padding: 18px; margin-bottom: 32px; border-radius:10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
     header h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3.2em;
+      font-size: 2.8rem;
       color: var(--accent);
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
       margin: 0;
     }
-    nav a { color: white; margin: 0 12px; font-weight: bold;
-      text-decoration: none; cursor: pointer;
+    nav { margin-top:10px; }
+    nav a { color: white; margin: 0 10px; font-weight: bold;
+      text-decoration: none; cursor: pointer; padding:6px 10px; border-radius:6px;
+      transition: 0.18s;
     }
+    nav a:hover { background: rgba(255,255,255,0.03); transform:translateY(-1px); }
+
     .seccion { display: none; padding: 20px; }
     .activa { display: block; }
-    #contacto form { display: flex; flex-direction: column; gap: 15px;
-      background-color: rgba(0, 0, 0, 0.5); padding: 20px;
-      border-radius: 10px; max-width: 500px;
+
+    #contacto form { display: flex; flex-direction: column; gap: 12px;
+      background-color: rgba(0, 0, 0, 0.5); padding: 18px;
+      border-radius: 10px; max-width: 520px;
     }
     #contacto input, #contacto textarea {
-      padding: 10px; border-radius: 5px; border: none; font-size: 16px;
+      padding: 10px; border-radius: 6px; border: none; font-size: 15px;
     }
     #contacto button {
       background-color: var(--accent); color: white; border: none;
-      padding: 10px; font-size: 16px; border-radius: 5px; cursor: pointer;
-      transition: 0.3s;
+      padding: 10px; font-size: 15px; border-radius: 6px; cursor: pointer;
+      transition: 0.25s;
     }
     #contacto button:hover { background-color: #007f87; }
-    footer { text-align: center; padding: 20px;
-      background-color: rgba(0,0,0,0.6); color: white; margin-top: 40px;
-    }
-    .musica-btn { display: block; margin: 20px auto; padding: 10px 20px;
-      font-size: 16px; cursor: pointer; border: none; border-radius: 5px;
-      background-color: rgba(255,255,255,0.85); color:#222;
-    }
-    .contenido-caja {
-      background: var(--card-bg); padding: 25px;
-      border-radius: 10px; max-width: 980px; margin: 0 auto;
-    }
-    .contenido-caja h2 { margin-top: 4px; color: var(--accent); }
 
-    /* PROYECTOS: visor tipo PDF embebido pero con marco y controles */
-    .viewer-wrap {
-      margin-top: 18px;
-      display:flex; flex-direction:column; gap:12px; align-items:center;
+    footer { text-align: center; padding: 18px;
+      background-color: rgba(0,0,0,0.45); color: white; margin-top: 34px; border-radius:8px;
     }
-    .viewer-frame {
-      width:100%; max-width:920px; height:640px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 12px;
-      padding:12px;
-      box-sizing:border-box;
-      border: 1px solid rgba(255,255,255,0.06);
+
+    .musica-btn {
+      display: inline-block; margin: 16px 0; padding: 8px 14px;
+      font-size: 15px; cursor: pointer; border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.9); color: #222;
+    }
+
+    .contenido-caja {
+      background: var(--card-bg); padding: 22px;
+      border-radius: 12px; max-width: 980px; margin: 0 auto;
       backdrop-filter: blur(6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
-    .viewer-top {
+    .contenido-caja h2, .contenido-caja h3 { margin-top: 16px; color: var(--accent); }
+
+    /* Proyectos - tarjeta con iframe estilizado */
+    .proyecto-card {
+      margin-top: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: 12px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .proyecto-top {
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+    }
+    .proyecto-top .titulo { font-size:1.2rem; color:var(--accent-2); font-weight:700; display:flex; align-items:center; gap:8px; }
+    .proyecto-actions { display:flex; gap:8px; align-items:center; }
+
+    .viewer-wrap {
+      width:100%; max-width:940px; margin: 0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+      color: var(--page-text);
+      border-radius:10px; overflow:hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .viewer-header {
       display:flex; justify-content:space-between; align-items:center; gap:10px;
-      margin-bottom:8px;
+      padding:10px 14px; background: rgba(0,0,0,0.03);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
-    .viewer-controls { display:flex; gap:8px; align-items:center; }
-    .viewer-controls .btn {
-      padding:8px 12px; border-radius:8px; border:none; cursor:pointer; background:var(--accent);
-      color:white; font-weight:600;
+    .viewer-header .meta { color:#444; font-size:14px; }
+    .viewer-frame {
+      width:100%; height:720px; border: none; display:block;
     }
-    .viewer-controls .btn:disabled { opacity:0.45; cursor: default; }
-    .viewer-status { color:var(--muted); font-size:14px; }
-    .viewer-iframe {
-      width:100%; height:560px; border:none; border-radius:8px; background:#fff;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+
+    /* fallback text if iframe blocked */
+    .iframe-fallback {
+      padding:18px; color:#333; background:#fff; min-height:360px; display:flex; align-items:center; justify-content:center;
     }
-    .viewer-bottom { display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:8px; color:var(--muted); font-size:13px; }
-    .page-input { width:70px; padding:6px 8px; border-radius:6px; border:1px solid rgba(0,0,0,0.12); }
 
     /* small screens */
-    @media (max-width:960px){
+    @media (max-width:900px){
       .viewer-frame { height:520px; }
-      .viewer-iframe { height:420px; }
+      .contenido-caja { padding:16px; }
+      header h1 { font-size:2.2rem; }
     }
-    @media (max-width:640px){
-      .viewer-frame { padding:8px; height:420px; }
-      .viewer-iframe { height:320px; }
-      header h1 { font-size:2rem; }
+    @media (max-width:540px){
+      .viewer-frame { height:420px; }
     }
+
+    /* redes list */
+    #redes ul { list-style:none; padding:0; margin:0; display:flex; gap:14px; flex-wrap:wrap; }
+    #redes a { color:white; text-decoration:none; display:flex; gap:8px; align-items:center; padding:6px 10px; border-radius:8px; background: rgba(255,255,255,0.03); }
   </style>
 </head>
 <body>
@@ -132,90 +157,94 @@
   <main>
     <!-- INICIO -->
     <section id="inicio" class="seccion activa">
-      <section id="clima" class="contenido-caja">
-        <h2>Clima actual en Bonpland, Corrientes</h2>
-        <p id="infoClima">Cargando clima...</p>
-      </section>
+      <div class="contenido-caja">
+        <h2>Bienvenidos</h2>
+        <p>La Meriendita 25 — emprendimiento escolar.</p>
 
-      <section id="musica" style="text-align:center; margin-top:18px;">
-        <audio id="musicaFondo" src="musica.mp3" loop></audio>
-        <div id="efecto-musica" style="display:none; text-align:center; margin-top:12px;">
-          <p style="color:#00ffcc; font-weight:bold;">♪ Música en reproducción ♪</p>
-        </div>
-        <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
-      </section>
+        <section id="clima" style="margin-top:14px;">
+          <h3>Clima actual en Bonpland, Corrientes</h3>
+          <p id="infoClima">Cargando clima...</p>
+        </section>
+
+        <section id="musica" style="margin-top:14px;">
+          <audio id="musicaFondo" src="musica.mp3" loop></audio>
+          <div id="efecto-musica" style="display:none; text-align:center; margin-top:10px;">
+            <p>♪ Música en reproducción ♪</p>
+          </div>
+          <button onclick="toggleMusica()" class="musica-btn">▶ Reproducir / Pausar música</button>
+        </section>
+      </div>
     </section>
 
     <!-- NOSOTROS -->
     <section id="nosotros" class="seccion">
       <div class="contenido-caja">
         <h2>¿Quiénes somos?</h2>
-        <p>Somos un grupo de tres estudiantes de 4° año del Colegio Secundario "Amado Bonpland", ubicado en un pueblito llamado Bonpland en la provincia de Corrientes. Este proyecto forma parte del espacio curricular T.I.I.C., guiado por nuestra profesora Natalia Romero.</p>
+        <p>Somos un grupo de tres estudiantes de 4° año del Colegio Secundario "Amado Bonpland", ubicado en Bonpland (Corrientes). Este proyecto forma parte del espacio curricular T.I.I.C., guiado por la profesora Natalia Romero.</p>
 
-        <h2>¿Cómo surgió el proyecto?</h2>
-        <p>La idea del emprendimiento surgió como parte de un trabajo práctico de T.I.I.C. El objetivo fue crear un producto que pueda ponerse a la venta dentro del colegio, aplicando organización, costos, planificación y manejo de herramientas digitales.</p>
-
-        <h2>Nuestras metas</h2>
-        <p>El objetivo principal es desarrollar un emprendimiento real que nos permita aprender sobre organización, trabajo en equipo, producción, ventas y uso de herramientas digitales.</p>
+        <h3>¿Cómo surgió el proyecto?</h3>
+        <p>La idea surgió como trabajo práctico en T.I.I.C. para crear un producto real que pueda venderse en la escuela y aprender sobre producción, costos y difusión digital.</p>
       </div>
     </section>
 
-    <!-- PROYECTOS (***** AQUÍ ESTÁ EL VISOR COMPLETO DEL PDF CON DISEÑO *****) -->
+    <!-- PROYECTOS (MODIFICADA: visor integrado del PDF con diseño) -->
     <section id="proyectos" class="seccion">
       <div class="contenido-caja">
         <h2>Nuestros Proyectos Destacados</h2>
-        <p>A continuación podés ver el informe completo de <strong>La Meriendita</strong> con diseño integrado en la web. Usá las flechas para navegar por las páginas (el visor carga el PDF dentro de la página).</p>
+        <p>A continuación podés ver el informe completo del proyecto "La Meriendita" directamente en la web. Si preferís, podés descargarlo o abrirlo en otra pestaña.</p>
 
-        <div class="viewer-wrap" role="region" aria-label="Visor del proyecto La Meriendita">
-          <div class="viewer-frame">
-            <!-- top controls -->
-            <div class="viewer-top">
-              <div class="viewer-controls" aria-hidden="false">
-                <button id="btnPrev" class="btn" title="Página anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="btnNext" class="btn" title="Página siguiente"><i class="fas fa-arrow-right"></i></button>
+        <div class="proyecto-card" role="region" aria-labelledby="titulo-proyecto">
+          <div class="proyecto-top">
+            <div class="titulo" id="titulo-proyecto"><i class="fas fa-book"></i> Informe - La Meriendita (Completo)</div>
+            <div class="proyecto-actions">
+              <!-- Botones: abrir en pestaña (apunta a GitHub Pages URL), descargar (misma URL), y fallback local -->
+              <a id="openTab" class="btn" href="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf" target="_blank" rel="noopener" title="Abrir PDF en nueva pestaña"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a id="downloadPdf" class="btn" href="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf" download title="Descargar PDF"><i class="fas fa-file-download"></i> Descargar</a>
+              <button id="vistaWebBtn" class="btn" onclick="mostrarVisorWeb()"><i class="fas fa-eye"></i> Ver aquí</button>
+            </div>
+          </div>
 
-                <label style="margin-left:10px; color:var(--text-light); font-weight:600;">Ir a página:</label>
-                <input id="inputPage" class="page-input" type="number" min="1" value="1" />
-                <button id="btnGo" class="btn" style="padding:6px 10px;">Ir</button>
+          <!-- Visor estilizado -->
+          <div id="viewerContainer" class="viewer-wrap" aria-hidden="true" style="display:none;">
+            <div class="viewer-header">
+              <div class="meta">Informe: La Meriendita — T.I.I.C. • Juan Ferreyra y equipo</div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn" onclick="zoomIn()">+ Zoom</button>
+                <button class="btn" onclick="zoomOut()">- Zoom</button>
+                <button class="btn" onclick="cerrarVisor()"><i class="fas fa-times"></i> Cerrar</button>
               </div>
-
-              <div class="viewer-status" id="viewerStatus">Página <span id="currentPage">1</span> / <span id="totalPages">--</span></div>
             </div>
 
-            <!-- iframe that loads the PDF; uses #page= to jump -->
-            <iframe id="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf
-pdfFrame" class="viewer-iframe"
-              src="/mnt/data/#page=1"
-              title="Informe La Meriendita"
-              aria-label="Visor de PDF integrado"></iframe>
+            <!-- Iframe que carga el PDF desde GitHub Pages (primaria) y desde /mnt/data (fallback local) -->
+            <iframe id="pdfFrame" class="viewer-frame" src="" title="Informe La Meriendita" loading="lazy"></iframe>
 
-            <!-- bottom row -->
-            <div class="viewer-bottom">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <!-- Open in new tab (useful if browser PDF doesn't support #page) -->
-                <a id="openNew" class="btn" href="/https://juancitofer25.github.io/bonplandcorrientes.com.ar/T.I.I.C.Noviembre25.pdf
-" target="_blank" rel="noopener" style="background:#006b5a;">
-                  <i class="fas fa-external-link-alt"></i> Abrir en pestaña
-                </a>
-                <a id="downloadPdf" class="btn" href="/mnt/data/T.I.I.C.Noviembre25.pdf" download style="background:#007f87;">
-                  <i class="fas fa-file-download"></i> Descargar PDF
-                </a>
-              </div>
-
-              <div style="text-align:right; color:var(--muted); font-size:13px;">
-                Formato: Informe original • Autor: Juan Ferreyra y equipo
+            <div id="iframeFallback" class="iframe-fallback" style="display:none;">
+              <div>
+                <p>No se puede mostrar el PDF aquí. Podés <a id="linkFallback" href="#" target="_blank" rel="noopener">abrirlo en una nueva pestaña</a> o <a id="linkDownloadFallback" href="#" download>descargarlo</a>.</p>
               </div>
             </div>
           </div>
+
         </div>
+
+        <!-- espacio para otros proyectos -->
+        <div style="margin-top:18px;">
+          <div class="seccion-proyecto">
+            <h3 onclick="toggleContenido('proyecto1')">💻 Proyecto Word: Portada, Índice y Desarrollo <i class="fas fa-caret-down"></i></h3>
+            <div id="proyecto1" class="contenido-proyecto">
+              <p>Proyecto realizado en Word con formato profesional. Aquí podés agregar tu archivo o descripción.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- REDES -->
     <section id="redes" class="seccion">
-      <div class="contenido-caja">
+      <div class="contenido-caja" id="redesCaja">
         <h2>Nuestras Redes Sociales:</h2>
-        <ul style="list-style:none; padding:0;">
+        <ul>
           <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
           <li><a href="https://www.youtube.com/tuusuario" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
           <li><a href="https://wa.me/543772612954" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a></li>
@@ -246,10 +275,13 @@ pdfFrame" class="viewer-iframe"
   </footer>
 
   <script>
-    /* ---------- Navegación secciones ---------- */
+    /* ---------- Helpers ---------- */
     function mostrarSeccion(id) {
       document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
       document.getElementById(id).classList.add('activa');
+      if (id === 'proyectos') {
+        // nothing else for now
+      }
     }
 
     /* ---------- Música ---------- */
@@ -264,7 +296,84 @@ pdfFrame" class="viewer-iframe"
       }
     }
 
-    /* ---------- Obtener clima ---------- */
+    /* ---------- Acordeón (pequeño) ---------- */
+    function toggleContenido(id) {
+      const cont = document.getElementById(id);
+      if (!cont) return;
+      if (cont.style.display === 'block') {
+        cont.style.display = 'none';
+      } else {
+        cont.style.display = 'block';
+      }
+    }
+
+    /* ---------- VISOR integrado (iframe) ---------- */
+    const ghPdfUrl = 'https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf';
+    const localPdfUrl = '/mnt/data/T.I.I.C.Noviembre25.pdf';
+
+    const viewerContainer = document.getElementById('viewerContainer');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const iframeFallback = document.getElementById('iframeFallback');
+    const linkFallback = document.getElementById('linkFallback');
+    const linkDownloadFallback = document.getElementById('linkDownloadFallback');
+
+    // Mostrar visor, intenta cargar desde GitHub Pages, si falla ofrece abrir en nueva pestaña
+    function mostrarVisorWeb(){
+      viewerContainer.style.display = 'block';
+      viewerContainer.setAttribute('aria-hidden','false');
+
+      // Primero intentamos cargar desde GitHub Pages (usuario subió el PDF ahí)
+      loadPdfInIframe(ghPdfUrl).catch(() => {
+        // si falla, intentamos la ruta local (para pruebas)
+        return loadPdfInIframe(localPdfUrl);
+      }).catch(() => {
+        // Si ambos fallan, mostramos fallback con links
+        pdfFrame.style.display = 'none';
+        iframeFallback.style.display = 'flex';
+        // Fallback links apuntan a el ghPdfUrl (aunque arroje 404 si no subiste)
+        linkFallback.href = ghPdfUrl;
+        linkDownloadFallback.href = ghPdfUrl;
+      });
+    }
+
+    // Carga el PDF en el iframe y devuelve una Promise que falla si no carga en X ms
+    function loadPdfInIframe(url){
+      return new Promise((resolve, reject) => {
+        // asignar src
+        pdfFrame.src = url;
+        pdfFrame.style.display = 'block';
+        iframeFallback.style.display = 'none';
+
+        // timeout por si no carga (ej. 4s)
+        const timeout = setTimeout(() => {
+          // no sabemos si realmente falló, pero asumimos timeout
+          // para dar alternativa
+          reject(new Error('timeout cargando iframe'));
+        }, 4000);
+
+        // intentar detectar carga (no siempre fiable por CORS), usamos onload
+        pdfFrame.onload = () => {
+          clearTimeout(timeout);
+          resolve();
+        };
+
+        // si el frame falla a nivel de red no hay evento sencillo; timeout lo cubre
+      });
+    }
+
+    function cerrarVisor(){
+      viewerContainer.style.display = 'none';
+      viewerContainer.setAttribute('aria-hidden','true');
+      // opcional: limpiar src para liberar memoria
+      pdfFrame.src = '';
+    }
+
+    // Zoom simple (usa escala CSS)
+    let zoomLevel = 1;
+    function zoomIn(){ zoomLevel = Math.min(2, zoomLevel + 0.1); pdfFrame.style.transform = 'scale(' + zoomLevel + ')'; pdfFrame.style.transformOrigin = 'top left'; }
+    function zoomOut(){ zoomLevel = Math.max(0.6, zoomLevel - 0.1); pdfFrame.style.transform = 'scale(' + zoomLevel + ')'; pdfFrame.style.transformOrigin = 'top left'; }
+
+    /* ---------- Clima ---------- */
     async function obtenerClima() {
       try {
         const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
@@ -281,69 +390,9 @@ pdfFrame" class="viewer-iframe"
     obtenerClima();
     setInterval(obtenerClima, 1800000);
 
-    /* ---------- Visor PDF (iframe + controls con #page=) ---------- */
-    (function(){
-      const pdfUrl = '/mnt/data/T.I.I.C.Noviembre25.pdf'; // local path — cambia a la URL de GitHub Pages cuando subas
-      const frame = document.getElementById('pdfFrame');
-      const btnPrev = document.getElementById('btnPrev');
-      const btnNext = document.getElementById('btnNext');
-      const inputPage = document.getElementById('inputPage');
-      const btnGo = document.getElementById('btnGo');
-      const currentPageEl = document.getElementById('currentPage');
-      const totalPagesEl = document.getElementById('totalPages');
+    // si querés, abrir automáticamente visor al entrar a Proyectos:
+    // mostrarSeccion('proyectos'); mostrarVisorWeb();
 
-      // Intentamos obtener el número total de páginas cargando el PDF en un objeto <embed> no visible
-      // Nota: no todos los navegadores permiten leer el total de páginas desde el PDF embebido.
-      // Por seguridad, colocamos un valor estimado y permitimos navegación limitada.
-      let totalPages = 39; // sabemos que tu PDF tiene 39 páginas — lo dejamos fijo
-      let currentPage = 1;
-
-      function updateUI(){
-        currentPageEl.textContent = currentPage;
-        totalPagesEl.textContent = totalPages;
-        inputPage.value = currentPage;
-        btnPrev.disabled = (currentPage <= 1);
-        btnNext.disabled = (currentPage >= totalPages);
-      }
-
-      function loadPage(n){
-        if(n < 1) n = 1;
-        if(n > totalPages) n = totalPages;
-        currentPage = n;
-        // Usamos fragment identifier #page= para pedir al visor de PDF que abra la página
-        // (funciona en la mayoría de navegadores y en GitHub Pages)
-        frame.src = pdfUrl + '#page=' + currentPage;
-        updateUI();
-      }
-
-      btnPrev.addEventListener('click', () => loadPage(currentPage - 1));
-      btnNext.addEventListener('click', () => loadPage(currentPage + 1));
-      btnGo.addEventListener('click', () => {
-        const n = Number(inputPage.value) || 1;
-        loadPage(n);
-      });
-      inputPage.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); btnGo.click(); }});
-
-      // Inicializa en página 1
-      loadPage(1);
-
-      // Si el usuario abre el informe desde la sección Proyectos sin haber cargado la sección,
-      // aseguramos que el iframe esté en la página 1 al mostrarse
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') loadPage(currentPage);
-      });
-
-      // Si subís a GitHub Pages y querés abrir en la página pasada por URL, soporte:
-      try {
-        const hash = new URL(window.location.href).hash;
-        const m = hash.match(/page=(\d+)/);
-        if (m) {
-          const p = parseInt(m[1],10);
-          if (!isNaN(p)) loadPage(p);
-        }
-      } catch(e){}
-    })();
   </script>
 </body>
 </html>
-
