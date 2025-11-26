@@ -12,6 +12,7 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
     :root{
       --accent:#00adb5;
       --accent-2:#00ffcc;
@@ -21,145 +22,187 @@
       --text-light:#e6f9f7;
       --muted:#cbd5d5;
     }
+
     html,body{height:100%;margin:0;padding:0}
     body {
       margin: 0; padding: 20px; font-family: Arial, sans-serif;
-      /* fondo original de Bonpland (asegurate que fondo.jpg exista en tu repo) */
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
-    header { text-align: center; background-color: rgba(0,0,0,0.5);
-      padding: 18px; margin-bottom: 30px; border-radius:10px;
+
+    header {
+      text-align: center;
+      background-color: rgba(0,0,0,0.5);
+      padding: 18px;
+      margin-bottom: 30px;
+      border-radius:10px;
       backdrop-filter: blur(4px);
     }
+
     header h1 {
       font-family: 'Pacifico', cursive;
       font-size: 3em;
       color: var(--accent);
       margin: 0;
     }
+
     nav { margin-top:8px; }
-    nav a { color: white; margin: 0 12px; font-weight: bold;
-      text-decoration: none; cursor: pointer; padding:6px 10px; border-radius:6px;
+    nav a {
+      color: white;
+      margin: 0 12px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:6px;
     }
-    nav a:hover { background: rgba(255,255,255,0.03); }
+    nav a:hover {
+      background: rgba(255,255,255,0.03);
+    }
 
-    main { max-width:1100px; margin: 0 auto; padding-bottom:40px; }
+    main { max-width:1100px; margin:0 auto; padding-bottom:40px; }
 
-    .seccion { display: none; padding: 18px; }
-    .activa { display: block; }
+    .seccion { display:none; padding:18px; }
+    .activa { display:block; }
 
-    /* cajas generales */
     .contenido-caja {
-      background: rgba(0,0,0,0.45); padding: 22px;
-      border-radius: 12px; margin: 0 auto; color: var(--text-light);
+      background: rgba(0,0,0,0.45);
+      padding: 22px;
+      border-radius: 12px;
+      margin: 0 auto;
+      color: var(--text-light);
       box-shadow: 0 6px 20px rgba(0,0,0,0.6);
     }
-    .contenido-caja h2 { margin-top: 6px; color: var(--accent); }
 
-    /* contacto */
-    #contacto form { display: flex; flex-direction: column; gap: 12px;
-      background-color: rgba(0, 0, 0, 0.45); padding: 18px;
-      border-radius: 10px; max-width: 520px;
+    .contenido-caja h2 { color:var(--accent); margin-top:6px; }
+
+    /* redes estilo uno abajo del otro */
+    #redes ul{
+      list-style:none;
+      padding:0;
+      margin:0;
     }
-    #contacto input, #contacto textarea { padding:10px; border-radius:6px; border:none; font-size:15px; }
-    #contacto button { background:var(--accent); color:#fff; padding:10px; border-radius:8px; border:none; cursor:pointer; }
-
-    /* clima */
-    #clima { text-align:center; margin:20px auto; max-width:420px; padding:12px; border-radius:10px; background: rgba(0,0,0,0.4); }
-
-    /* redes */
-    #redes ul{ list-style:none; padding:0; margin:0; display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;}
-    #redes a{ color:var(--text-light); text-decoration:none; display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.02);}
-    #redes a:hover{ background: rgba(255,255,255,0.04); }
-
-    /* PROYECTOS - estilo moderno y "hoja translúcida" */
-    .proyectos-grid { display:flex; gap:18px; flex-direction:column; }
-    .project-card {
-      display:flex; flex-direction:column; gap:12px; padding:16px;
-      border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid rgba(255,255,255,0.04); box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    #redes ul li{
+      margin:14px 0;
     }
-    .project-header { display:flex; justify-content:space-between; align-items:center; gap:10px; }
-    .project-title { font-size:18px; color:var(--accent-2); font-weight:700; display:flex; align-items:center; gap:8px; }
-    .project-meta { color:var(--muted); font-size:13px; }
-
-    /* visor estilo "sheet" */
-    .sheet-wrap { display:flex; flex-direction:column; gap:12px; align-items:center; margin-top:12px; }
-    .sheet {
-      width:100%; max-width:920px; min-height:520px; border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border: 1px solid var(--sheet-border);
-      padding:14px; box-sizing:border-box;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      backdrop-filter: blur(6px) saturate(120%);
+    #redes a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      background: rgba(255,255,255,0.05);
+      border-radius:10px;
+      text-decoration:none;
+      color:white;
     }
-    .sheet .toolbar { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
-    .sheet .toolbar .left { display:flex; gap:8px; align-items:center; }
-    .sheet .toolbar .right { display:flex; gap:8px; align-items:center; }
 
-    .sheet .viewer {
-      width:100%; height:100%; min-height:420px; border-radius:8px; overflow:hidden;
-      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
-      display:flex; align-items:center; justify-content:center;
+    /* contacto más grande estilo anterior */
+    #contacto form {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      background-color: rgba(0,0,0,0.45);
+      padding:22px;
+      border-radius:12px;
+      max-width:520px;
+      /* CAMBIO AQUÍ: Se elimina margin:auto para alinear a la izquierda */
+      margin: 0; 
+      box-sizing: border-box; /* Asegura que el padding no exceda el ancho */
     }
-    .viewer iframe { width:100%; height:100%; border:0; }
 
-    .btn {
-      background: var(--accent); color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;
-      text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    #contacto input, #contacto textarea {
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      font-size:16px;
     }
-    .btn.secondary { background: rgba(255,255,255,0.06); color:var(--text-light); border:1px solid rgba(255,255,255,0.04); }
 
-    /* extra pequeño */
-    .muted { color:var(--muted); font-size:14px; }
-
-    @media (max-width:920px){
-      header h1 { font-size:2.3em; }
-      .sheet { min-height:420px; }
+    #contacto button {
+      background:var(--accent);
+      color:#fff;
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:bold;
     }
-    @media (max-width:600px){
-      nav a{ display:inline-block; padding:6px 8px; margin:0 6px;}
-      .viewer { min-height:300px; }
+
+    /* clima más grande */
+    #clima {
+      text-align:center;
+      margin:20px auto;
+      max-width:480px;
+      padding:18px;
+      border-radius:10px;
+      background: rgba(0,0,0,0.4);
+      font-size:18px;
+    }
+
+    /* VISOR PDF MEDIANO Y CRISTAL BORROSO */
+    .sheet-wrap{
+      display:none;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .sheet{
+      width:90%;
+      max-width:800px;
+      min-height:520px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(8px) saturate(140%);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:14px;
+      padding:12px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .viewer{
+      width:100%;
+      height:600px;
+      border-radius:10px;
+      overflow:hidden;
+      background:rgba(0,0,0,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .viewer iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      background:transparent;
     }
   </style>
+
 </head>
 <body>
+
   <header>
     <h1>La Meriendita 25</h1>
     <nav>
       <a onclick="mostrarSeccion('inicio')">Inicio</a>
-      <a onclick="mostrarSeccion('nosotros')">Sobre Nosotros</a>
+      <a onclick="mostrarSeccion('nosotros')">Nosotros</a>
       <a onclick="mostrarSeccion('proyectos')">Proyectos</a>
-      <a onclick="mostrarSeccion('redes')">Redes</a>
+      <a onclick="mostrarSeccion('redes')">Redes Sociales</a>
       <a onclick="mostrarSeccion('contacto')">Contacto</a>
     </nav>
   </header>
-
+  
   <main>
-    <!-- INICIO -->
     <section id="inicio" class="seccion activa">
       <div class="contenido-caja">
-        <h2>Inicio</h2>
         <div id="clima">
           <h3 style="margin:6px 0 8px 0; color:var(--accent)">Clima actual en Bonpland, Corrientes</h3>
           <p id="infoClima" class="muted">Cargando clima...</p>
         </div>
-
-        <div style="margin-top:18px; text-align:center;">
-          <audio id="musicaFondo" src="musica.mp3" loop></audio>
-          <div id="efecto-musica" style="display:none; text-align:center; margin-top:12px;">
-            <p style="color:var(--accent-2); font-weight:700;">♪ Música en reproducción ♪</p>
-          </div>
-          <button onclick="toggleMusica()" class="btn" style="background:#fff;color:#222;">▶ Reproducir / Pausar música</button>
-        </div>
       </div>
     </section>
 
-    <!-- NOSOTROS (NO TOCAR) -->
     <section id="nosotros" class="seccion">
       <div class="contenido-caja">
         <h2>¿Quiénes somos?</h2>
@@ -173,14 +216,13 @@
       </div>
     </section>
 
-    <!-- PROYECTOS -->
     <section id="proyectos" class="seccion">
       <div class="contenido-caja">
         <h2>Proyectos</h2>
         <p class="muted">Hacé click en "Abrir proyecto" para ver el informe completo dentro de la página (se carga rápido y con estilo moderno).</p>
 
         <div class="proyectos-grid">
-          <!-- tarjeta del proyecto principal -->
+                    
           <div class="project-card">
             <div class="project-header">
               <div>
@@ -188,14 +230,12 @@
                 <div class="project-meta">Materia: T.I.I.C. • Integrantes: Ferreyra, Canteros, Olivera</div>
               </div>
               <div>
-                <!-- Abrir visor (inicia iframe lazy) -->
                 <button id="openViewerBtn" class="btn" onclick="abrirVisor()" title="Abrir proyecto">Abrir proyecto</button>
                 <a id="openNew" class="btn secondary" href="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf" target="_blank" rel="noopener" style="background:#006b5a;"><i class="fas fa-external-link-alt"></i> Abrir en pestaña</a>
                 <a id="downloadBtn" class="btn" href="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf" download style="background:#007f87;"><i class="fas fa-file-download"></i> Descargar PDF</a>
               </div>
             </div>
 
-            <!-- sheet moderno -->
             <div id="sheetWrap" class="sheet-wrap" style="display:none;">
               <div class="sheet" id="sheet">
                 <div class="toolbar">
@@ -211,7 +251,6 @@
                 </div>
 
                 <div class="viewer" id="viewerContainer" aria-live="polite">
-                  <!-- iframe se inyecta dinámicamente -->
                   <div id="viewerFallback" style="color:var(--muted); text-align:center; padding:16px;">
                     El proyecto se cargará aquí. Si tarda, podés abrirlo en una pestaña con "Abrir en pestaña".
                   </div>
@@ -225,13 +264,10 @@
             </div>
 
           </div>
-
-          <!-- aquí podés agregar más tarjetas si querés -->
         </div>
       </div>
     </section>
 
-    <!-- REDES -->
     <section id="redes" class="seccion">
       <div class="contenido-caja">
         <h2>Nuestras Redes Sociales:</h2>
@@ -245,10 +281,9 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto" class="seccion">
       <div class="contenido-caja">
-        <h2>Contacto</h2>
+        <h2>Contacto</h2> 
         <form action="https://formspree.io/f/mqaleykl" method="POST">
           <label for="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
@@ -272,91 +307,69 @@
     function mostrarSeccion(id) {
       document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
       document.getElementById(id).classList.add('activa');
-      // si abrís proyectos, ocultamos visor por defecto hasta que presiones "Abrir proyecto"
-      if (id === 'proyectos') {
-        // no hacer nada más
-      }
-    }
-
-    /* ---------- Música ---------- */
-    const musica = document.getElementById('musicaFondo');
-    const efecto = document.getElementById('efecto-musica');
-    function toggleMusica() {
-      if (!musica) return;
-      if (musica.paused) {
-        musica.play(); if(efecto) efecto.style.display = 'block';
-      } else {
-        musica.pause(); if(efecto) efecto.style.display = 'none';
-      }
     }
 
     /* ---------- Clima ---------- */
     async function obtenerClima() {
       try {
         const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
-        if (!res.ok) throw new Error('Error al obtener datos del clima');
         const data = await res.json();
         const clima = data.current_weather;
-        const info = `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
-        document.getElementById("infoClima").textContent = info;
+        document.getElementById("infoClima").textContent =
+          `Temperatura: ${clima.temperature} °C, Viento: ${clima.windspeed} km/h`;
       } catch (error) {
-        document.getElementById("infoClima").textContent = `Error al cargar el clima.`;
-        console.error("Error fetching weather:", error);
+        document.getElementById("infoClima").textContent = "Error al cargar el clima.";
       }
     }
+    // Carga el clima al inicio y lo actualiza cada 30 minutos (1800000 ms)
     obtenerClima();
     setInterval(obtenerClima, 1800000);
 
-    /* ---------- VISOR PDF (lazy + estilo moderno) ---------- */
-    // URL del PDF en tu repo (si lo movés, actualizá esto)
+    /* ---------- PDF Visor ---------- */
     const pdfUrl = "https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf";
 
     let viewerLoaded = false;
-    function abrirVisor(){
-      // mostrar la "sheet"
+    function abrirVisor() {
       document.getElementById('sheetWrap').style.display = 'flex';
-      // si ya cargó, no recargar
-      if(viewerLoaded) return;
+
+      if (viewerLoaded) return;
+
       const viewer = document.getElementById('viewerContainer');
-      // creamos iframe (usa Google Docs viewer como fallback o embed nativo)
-      // preferimos usar <iframe src="...#view=FitH"> pero muchos navegadores muestran PDF nativo
-      // Usamos el propio PDF del repo: el servidor GH Pages lo sirve como PDF
       const iframe = document.createElement('iframe');
-      iframe.src = pdfUrl + "#toolbar=0&view=FitH";
+      iframe.src = pdfUrl + "#toolbar=0&view=FitH"; 
       iframe.loading = "lazy";
-      iframe.title = "Informe La Meriendita - Proyecto Escolar";
-      // estilo transparente para que se vea moderno
       iframe.style.background = "transparent";
+
       viewer.innerHTML = "";
       viewer.appendChild(iframe);
+
       viewerLoaded = true;
-      // opcional: actualizar botones (si quieres que se deshabiliten)
+
       document.getElementById('openViewerBtn').textContent = "Proyecto abierto";
       document.getElementById('openViewerBtn').disabled = true;
     }
 
-    function cerrarVisor(){
+    function cerrarVisor() {
       document.getElementById('sheetWrap').style.display = 'none';
+      document.getElementById('openViewerBtn').textContent = "Abrir proyecto";
+      document.getElementById('openViewerBtn').disabled = false;
     }
 
-    /* Zoom básico: aumentamos el transform scale del iframe */
-    function setZoom(scale){
+    let currentZoom = 1;
+    function setZoom(scale) {
       const iframe = document.querySelector('#viewerContainer iframe');
-      if(!iframe) return;
+      if (!iframe) return;
+
       iframe.style.transformOrigin = "top center";
       iframe.style.transform = "scale(" + scale + ")";
-      iframe.style.width = (100/scale) + "%";
-      iframe.style.height = (100/scale) + "%";
+      iframe.style.width = (100 / scale) + "%"; 
+      iframe.style.height = (100 / scale) + "%";
     }
-    let currentZoom = 1;
-    function zoomIn(){ currentZoom = Math.min(1.6, currentZoom + 0.1); setZoom(currentZoom); }
-    function zoomOut(){ currentZoom = Math.max(0.6, currentZoom - 0.1); setZoom(currentZoom); }
-    function resetZoom(){ currentZoom = 1; setZoom(currentZoom); }
 
-    /* Mejor performance: no hacemos nada en DOMContentLoaded para el PDF (lazy) */
-    document.addEventListener('DOMContentLoaded', function(){
-      // nada más
-    });
+    function zoomIn() { currentZoom = Math.min(1.6, currentZoom + 0.1); setZoom(currentZoom); }
+    function zoomOut() { currentZoom = Math.max(0.6, currentZoom - 0.1); setZoom(currentZoom); }
+    function resetZoom() { currentZoom = 1; setZoom(currentZoom); }
   </script>
+
 </body>
 </html>
