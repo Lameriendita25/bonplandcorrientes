@@ -2,13 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>La Meriendita 25 - bonpland,corrientes</title>
+  <title>La Meriendita 25 - bonpland corriente</title>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content= "Página web oficial de Bonpland Corrientes. proyecto escolar & emprendimiento." </>
-  <meta name="keywords" content="Bonpland, Corrientes, proyecto, emprendimiento, información, pueblo" </>
-  <meta name="author" content="bonpland,corrientes" </>
-  <meta name="robots" content="index, follow" </>
+
+  <meta name="description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes. Un proyecto escolar y emprendimiento a cargo de los alumnos del 4to año  del Colegio secundario "Amado Bonpland".">
+  
+  <meta name="keywords" content="Bonpland, Corrientes, proyecto, emprendimiento, información, pueblo">
+  <meta name="author" content="Juan Ferreyra y Amigos">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="logo.png">
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -106,9 +112,8 @@
       padding:22px;
       border-radius:12px;
       max-width:520px;
-      /* CAMBIO AQUÍ: Se elimina margin:auto para alinear a la izquierda */
       margin: 0; 
-      box-sizing: border-box; /* Asegura que el padding no exceda el ancho */
+      box-sizing: border-box; 
     }
 
     #contacto input, #contacto textarea {
@@ -222,7 +227,7 @@
         <p class="muted">Hacé click en "Abrir proyecto" para ver el informe completo dentro de la página (se carga rápido y con estilo moderno).</p>
 
         <div class="proyectos-grid">
-                    
+                    
           <div class="project-card">
             <div class="project-header">
               <div>
@@ -303,13 +308,11 @@
   </footer>
 
   <script>
-    /* ---------- Navegación secciones ---------- */
     function mostrarSeccion(id) {
       document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
       document.getElementById(id).classList.add('activa');
     }
 
-    /* ---------- Clima ---------- */
     async function obtenerClima() {
       try {
         const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
@@ -321,11 +324,9 @@
         document.getElementById("infoClima").textContent = "Error al cargar el clima.";
       }
     }
-    // Carga el clima al inicio y lo actualiza cada 30 minutos (1800000 ms)
     obtenerClima();
     setInterval(obtenerClima, 1800000);
 
-    /* ---------- PDF Visor ---------- */
     const pdfUrl = "https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf";
 
     let viewerLoaded = false;
@@ -373,8 +374,3 @@
 
 </body>
 </html>
-
-
-
-
-
