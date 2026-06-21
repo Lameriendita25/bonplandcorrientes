@@ -6,7 +6,6 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- SOLUCIÓN CELULAR CHICO: Ahora se adapta automáticamente a cualquier pantalla -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes. Un proyecto escolar y emprendimiento a cargo de los alumnos del 4to año del Colegio secundario Amado Bonpland.">
@@ -14,7 +13,6 @@
   <meta name="author" content="Juan Ferreyra y Amigos">
   <meta name="robots" content="index, follow">
 
-  <!-- SOLUCIÓN GOOGLE LUPA: Rutas explícitas y etiquetas Open Graph para ayudar a los buscadores -->
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="shortcut icon" href="logo.png" type="image/png">
   <link rel="apple-touch-icon" href="logo.png">
@@ -43,12 +41,12 @@
     body {
       padding: 10px; 
       font-family: Arial, sans-serif;
+      /* REVISAR: Tu foto del mundo debe llamarse exactamente fondo.jpg en tu carpeta */
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
     }
 
-    /* Ajustes multimedia responsivos para que no se rompa en pantallas chicas */
     header {
       text-align: center;
       background-color: rgba(0,0,0,0.6);
@@ -60,7 +58,7 @@
 
     header h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 2.5em; /* Reducido un toque para celulares */
+      font-size: 2.5em; 
       color: var(--accent);
       margin: 0;
     }
@@ -82,9 +80,12 @@
       border-radius: 6px;
       font-size: 14px;
       background: rgba(255,255,255,0.05);
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
-    nav a:hover { background: rgba(255,255,255,0.15); }
+    nav a:hover { 
+      background: var(--accent); 
+      transform: scale(1.05);
+    }
 
     main { 
       max-width: 1100px; 
@@ -108,7 +109,6 @@
 
     .contenido-caja h2 { color: var(--accent); margin-top: 6px; }
 
-    /* SOLUCIÓN COLOR TEXTO: Estilo personalizado para el texto que querías destacar */
     .texto-destacado {
       color: var(--accent-2);
       font-size: 1.1em;
@@ -130,7 +130,9 @@
       display: flex; align-items: center; gap: 12px; padding: 12px;
       background: rgba(255,255,255,0.05); border-radius: 10px;
       text-decoration: none; color: white;
+      transition: background 0.3s;
     }
+    #redes a:hover { background: rgba(255,255,255,0.15); }
 
     #contacto form {
       display: flex; flex-direction: column; gap: 14px;
@@ -146,7 +148,9 @@
     #contacto button {
       background: var(--accent); color: #fff; padding: 12px;
       border-radius: 8px; border: none; cursor: pointer; font-weight: bold;
+      transition: background 0.3s;
     }
+    #contacto button:hover { background: #008f96; }
 
     #clima {
       text-align: center; margin: 20px auto 10px auto; max-width: 480px;
@@ -167,9 +171,10 @@
       padding: 10px 20px; border-radius: 8px; border: none;
       cursor: pointer; font-weight: bold; text-decoration: none;
       display: inline-block; margin: 5px;
+      transition: opacity 0.3s;
     }
+    .btn:hover { opacity: 0.9; }
 
-    /* Adaptación de tamaño de títulos para pantallas grandes */
     @media (min-width: 768px) {
       body { padding: 20px; }
       header h1 { font-size: 3.5em; }
@@ -195,7 +200,6 @@
     <section id="inicio" class="seccion activa">
       <div class="contenido-caja">
         <h2 style="font-family: 'Pacifico', cursive;">¡Bienvenidos!</h2>
-        <!-- Aplicada la clase .texto-destacado con el color turquesa brillante -->
         <p class="texto-destacado">Estás en el sitio oficial de nuestro emprendimiento escolar. Aquí compartimos nuestros avances y toda la info de nuestro querido pueblo.</p>
         
         <div class="curiosidad-box">
@@ -232,7 +236,7 @@
             <h3 style="margin:0"><i class="fas fa-book-open"></i> Informe Escolar T.I.I.C.</h3>
             <p style="font-size:14px;">Materia: T.I.I.C. • Integrantes: Ferreyra, Canteros, Olivera</p>
             <button id="openViewerBtn" class="btn" style="background:var(--accent); color:white;" onclick="abrirVisor()">Abrir proyecto</button>
-            <a class="btn" style="background:#006b5a; color:white;" href="https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf" target="_blank">Abrir en pestaña</a>
+            <a class="btn" style="background:#006b5a; color:white;" href="https://lameriendita25.github.io/bonplandcorrientes/tiic-noviembre-25.pdf" target="_blank">Abrir en pestaña</a>
         </div>
 
         <div id="sheetWrap" class="sheet-wrap">
@@ -247,7 +251,7 @@
     <section id="redes" class="seccion">
       <div class="contenido-caja">
         <h2>Nuestras Redes Sociales:</h2>
-        <div id="redes">
+        <div>
           <ul>
             <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
             <li><a href="https://www.youtube.com/@JuancinoYT" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
@@ -291,7 +295,7 @@
     }
     obtenerClima();
 
-    const pdfUrl = "https://lameriendita25.github.io/bonplandcorrientes/T.I.I.C.Noviembre25.pdf";
+    const pdfUrl = "https://lameriendita25.github.io/bonplandcorrientes/tiic-noviembre-25.pdf";
     function abrirVisor() {
       alert("El proyecto se está cargando. Por favor, espera unos segundos...");
       document.getElementById('sheetWrap').style.display = 'flex';
