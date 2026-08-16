@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>La Meriendita 25 - Bonpland, Corrientes</title>
@@ -10,21 +12,21 @@
   <meta name="robots" content="index, follow">
 
   <!-- ENLACES DEL FAVICON (ICONO Y LOGO PARA GOOGLE Y PESTAÑA) -->
-  <link rel="icon" type="image/png" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
-  <link rel="shortcut icon" type="image/png" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
-  <link rel="apple-touch-icon" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png">
+  <link rel="icon" type="image/png" href="https://github.io" />
+  <link rel="shortcut icon" type="image/png" href="https://github.io" />
+  <link rel="apple-touch-icon" href="https://github.io">
 
   <!-- CONFIGURACIÓN PARA REDES SOCIALES (OPEN GRAPH) -->
   <meta property="og:title" content="La Meriendita 25 - Bonpland, Corrientes" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lameriendita25.github.io/bonplandcorrientes/" />
+  <meta property="og:url" content="https://github.io" />
   <meta property="og:description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes." />
-  <meta property="og:image" content="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
+  <meta property="og:image" content="https://github.io" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://googleapis.com');
 
     :root {
       --accent: #00adb5;
@@ -185,3 +187,53 @@
     }
   </style>
 </head>
+<body>
+
+  <header>
+    <h1>La Meriendita 25</h1>
+    <nav>
+      <a onclick="mostrarSeccion('inicio')">Inicio</a>
+      <a onclick="mostrarSeccion('nosotros')">Nosotros</a>
+      <a onclick="mostrarSeccion('proyectos')">Proyectos</a>
+      <a onclick="mostrarSeccion('redes')">Redes Sociales</a>
+      <a onclick="mostrarSeccion('contacto')">Contacto</a>
+    </nav>
+  </header>
+  
+  <main>
+    <section id="inicio" class="seccion activa">
+      <div class="contenido-caja">
+        <h2 style="font-family: 'Pacifico', cursive;">¡Bienvenidos!</h2>
+        <p class="texto-destacado">Estás en el sitio oficial de nuestro emprendimiento escolar. Aquí compartimos nuestros avances y toda la info de nuestro querido pueblo.</p>
+        
+        <div class="curiosidad-box">
+           <h3 style="color:var(--accent-2); margin-top:0;"><i class="fas fa-lightbulb"></i> ¿Sabías esto de Bonpland, Corrientes?</h3>
+           <p>Nuestro pueblo no siempre se llamó así. Originalmente era conocido como <strong>"Santa Ana"</strong>. Fue rebautizado en honor al gran naturalista y botánico francés <strong>Aimé Bonpland</strong>, quien eligió nuestras tierras correntinas para vivir y realizar sus investigaciones científicas. ¡Llevamos la historia de un sabio en nuestro nombre!</p>
+        </div>
+
+        <div id="clima">
+          <h3 style="margin:6px 0 8px 0; color:var(--accent)">Clima actual en Bonpland</h3>
+          <p id="infoClima" class="muted">Cargando clima...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros" class="seccion">
+      <div class="contenido-caja">
+        <h2>¿Quiénes somos?</h2>
+        <p>Somos un grupo de estudiantes de 4° año del Colegio Secundario Amado Bonpland liderando este gran proyecto escolar.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function mostrarSeccion(id) {
+      const secciones = document.querySelectorAll('.seccion');
+      secciones.forEach(sec => sec.classList.remove('activa'));
+      const activa = document.getElementById(id);
+      if(activa) activa.classList.add('activa');
+    }
+  </script>
+
+</body>
+</html>
