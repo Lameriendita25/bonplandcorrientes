@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>La Meriendita 25 - Bonpland, Corrientes</title>
-  
-  <!-- CONFIGURACIÓN DE TÍTULO Y FOTO PARA GOOGLE (OPEN GRAPH) -->
-  <meta property="og:title" content="La Meriendita 25 - Bonpland, Corrientes" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://github.io" />
-  
-  <!-- REEMPLAZA 'foto-escuela.jpg' POR EL NOMBRE REAL DE TU IMAGEN -->
-  <meta property="og:image" content="https://github.iologo.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  
-  <!-- ICONO PEQUEÑO PARA LA PESTAÑA DEL NAVEGADOR Y GOOGLE -->
-  <link rel="icon" type="image/png" href="https://github.iologo.png" />
-  
-  <link rel="stylesheet" href="https://cloudflare.com">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- METADATOS BÁSICOS PARA BUSCADORES -->
   <meta name="description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes. Un proyecto escolar y emprendimiento a cargo de los alumnos del 4to año del Colegio secundario Amado Bonpland.">
   <meta name="keywords" content="Bonpland, Corrientes, proyecto, emprendimiento, información, pueblo, La Meriendita">
   <meta name="author" content="Juan Ferreyra y Amigos">
   <meta name="robots" content="index, follow">
 
-  <link rel="icon" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" type="image/png">
-  <link rel="shortcut icon" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" type="image/png">
+  <!-- ENLACES DEL FAVICON (ICONO Y LOGO PARA GOOGLE Y PESTAÑA) -->
+  <link rel="icon" type="image/png" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
   <link rel="apple-touch-icon" href="https://lameriendita25.github.io/bonplandcorrientes/logo.png">
-  <meta property="og:image" content="https://lameriendita25.github.io/bonplandcorrientes/logo.png">
-  <meta property="og:title" content="La Meriendita 25 - Bonpland, Corrientes">
-  <meta property="og:description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes.">
+
+  <!-- CONFIGURACIÓN PARA REDES SOCIALES (OPEN GRAPH) -->
+  <meta property="og:title" content="La Meriendita 25 - Bonpland, Corrientes" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lameriendita25.github.io/bonplandcorrientes/" />
+  <meta property="og:description" content="Página oficial de La Meriendita 25 de Bonpland, Corrientes." />
+  <meta property="og:image" content="https://lameriendita25.github.io/bonplandcorrientes/logo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -54,7 +44,6 @@
     body {
       padding: 10px; 
       font-family: Arial, sans-serif;
-      /* REVISAR: Tu foto del mundo debe llamarse exactamente fondo.jpg en tu carpeta */
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
@@ -196,134 +185,3 @@
     }
   </style>
 </head>
-<body>
-
-  <header>
-    <h1>La Meriendita 25</h1>
-    <nav>
-      <a onclick="mostrarSeccion('inicio')">Inicio</a>
-      <a onclick="mostrarSeccion('nosotros')">Nosotros</a>
-      <a onclick="mostrarSeccion('proyectos')">Proyectos</a>
-      <a onclick="mostrarSeccion('redes')">Redes Sociales</a>
-      <a onclick="mostrarSeccion('contacto')">Contacto</a>
-    </nav>
-  </header>
-  
-  <main>
-    <section id="inicio" class="seccion activa">
-      <div class="contenido-caja">
-        <h2 style="font-family: 'Pacifico', cursive;">¡Bienvenidos!</h2>
-        <p class="texto-destacado">Estás en el sitio oficial de nuestro emprendimiento escolar. Aquí compartimos nuestros avances y toda la info de nuestro querido pueblo.</p>
-        
-        <div class="curiosidad-box">
-           <h3 style="color:var(--accent-2); margin-top:0;"><i class="fas fa-lightbulb"></i> ¿Sabías esto de Bonpland, Corrientes?</h3>
-           <p>Nuestro pueblo no siempre se llamó así. Originalmente era conocido como <strong>"Santa Ana"</strong>. Fue rebautizado en honor al gran naturalista y botánico francés <strong>Aimé Bonpland</strong>, quien eligió nuestras tierras correntinas para vivir y realizar sus investigaciones científicas. ¡Llevamos la historia de un sabio en nuestro nombre!</p>
-        </div>
-
-        <div id="clima">
-          <h3 style="margin:6px 0 8px 0; color:var(--accent)">Clima actual en Bonpland</h3>
-          <p id="infoClima" class="muted">Cargando clima...</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="nosotros" class="seccion">
-      <div class="contenido-caja">
-        <h2>¿Quiénes somos?</h2>
-        <p>Somos un grupo de tres estudiantes de 4° año del Colegio Secundario "Amado Bonpland", ubicado en un pueblito llamado Bonpland en la provincia de Corrientes. Este proyecto forma parte del espacio curricular T.I.I.C., guiado por nuestra profesora Natalia Romero.</p>
-
-        <h2>¿Cómo surgió el proyecto?</h2>
-        <p>La idea del emprendimiento surgió como parte de un trabajo práctico de T.I.I.C. El objetivo fue crear un producto que pueda ponerse a la venta dentro del colegio, aplicando organización, costos, planificación y manejo de herramientas digitales.</p>
-
-        <h2>Nuestras metas</h2>
-        <p>El objetivo principal es desarrollar un emprendimiento real que nos permita aprender sobre organización, trabajo en equipo, producción, ventas y uso de herramientas digitales.</p>
-      </div>
-    </section>
-
-    <section id="proyectos" class="seccion">
-      <div class="contenido-caja">
-        <h2>Proyectos</h2>
-        <p class="muted">Haz clic en "Abrir proyecto" para ver el informe. El visor puede tardar unos segundos en cargar.</p>
-
-        <div style="background:rgba(255,255,255,0.05); padding:15px; border-radius:10px;">
-            <h3 style="margin:0"><i class="fas fa-book-open"></i> Informe Escolar T.I.I.C.</h3>
-            <p style="font-size:14px;">Materia: T.I.I.C. • Integrantes: Ferreyra, Canteros, Olivera</p>
-            <button id="openViewerBtn" class="btn" style="background:var(--accent); color:white;" onclick="abrirVisor()">Abrir proyecto</button>
-            <a class="btn" style="background:#006b5a; color:white;" href="https://lameriendita25.github.io/bonplandcorrientes/tiic-noviembre-25.pdf" target="_blank">Abrir en pestaña</a>
-        </div>
-
-        <div id="sheetWrap" class="sheet-wrap">
-          <div class="sheet">
-            <div class="viewer" id="viewerContainer"></div>
-          </div>
-          <button class="btn" style="background:#e74c3c; color:white;" onclick="cerrarVisor()">Cerrar Visor</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="redes" class="seccion">
-      <div class="contenido-caja">
-        <h2>Nuestras Redes Sociales:</h2>
-        <div>
-          <ul>
-            <li><a href="https://www.instagram.com/lameriendita25.okk" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram</a></li>
-            <li><a href="https://www.youtube.com/@JuancinoYT" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</a></li>
-            <li><a href="https://www.tiktok.com/@tu_usuario_tiktok" target="_blank"><i class="fab fa-tiktok" style="color:#ffffff;"></i> TikTok</a></li>
-            <li><a href="https://wa.me/543772612954" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="seccion">
-      <div class="contenido-caja">
-        <h2>Contacto</h2> 
-        <form action="https://formspree.io/f/mqaleykl" method="POST">
-          <input type="text" name="nombre" placeholder="Tu nombre" required />
-          <input type="email" name="email" placeholder="Tu correo" required />
-          <textarea name="mensaje" placeholder="Tu mensaje..." rows="3" required></textarea>
-          <button type="submit">Enviar mensaje</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer style="text-align:center; padding:20px; color:var(--muted);">
-    © 2026 Juan Ferreyra y Equipo. Colegio secundario "Amado Bonpland".
-  </footer>
-
-  <script>
-    function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-      document.getElementById(id).classList.add('activa');
-    }
-
-    async function obtenerClima() {
-      try {
-        const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-29.546&longitude=-56.213&current_weather=true");
-        const data = await res.json();
-        const clima = data.current_weather;
-        document.getElementById("infoClima").textContent = `Temperatura: ${clima.temperature}°C | Viento: ${clima.windspeed} km/h`;
-      } catch (e) { document.getElementById("infoClima").textContent = "Clima no disponible."; }
-    }
-    obtenerClima();
-
-    const pdfUrl = "https://lameriendita25.github.io/bonplandcorrientes/tiic-noviembre-25.pdf";
-    function abrirVisor() {
-      alert("El proyecto se está cargando. Por favor, espera unos segundos...");
-      document.getElementById('sheetWrap').style.display = 'flex';
-      const viewer = document.getElementById('viewerContainer');
-      viewer.innerHTML = `<iframe src="${pdfUrl}#toolbar=0&view=FitH"></iframe>`;
-      document.getElementById('openViewerBtn').disabled = true;
-      document.getElementById('openViewerBtn').textContent = "Abierto";
-    }
-
-    function cerrarVisor() {
-      document.getElementById('sheetWrap').style.display = 'none';
-      document.getElementById('viewerContainer').innerHTML = "";
-      document.getElementById('openViewerBtn').disabled = false;
-      document.getElementById('openViewerBtn').textContent = "Abrir proyecto";
-    }
-  </script>
-</body>
-</html>
